@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package >
+  <metadata>
+    <id>KhipuApiClient</id>
+    <version>2.0.2</version>
+    <title>A wrapper for the khipu APIs</title>
+    <authors>Khipu</authors>
+    <owners>Khipu</owners>
+    <licenseUrl>https://raw.githubusercontent.com/khipu/khipu-api-dotnet-client/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/khipu/khipu-api-dotnet-client</projectUrl>
+    <iconUrl>http://www.gravatar.com/avatar/8e4e636a126998f9886580bfe51cb538.png</iconUrl>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <description>A .NET wrapper for the khipu APIs</description>
+    <releaseNotes>First release</releaseNotes>
+    <copyright>Copyright 2015</copyright>
+    <tags>REST payment api khipu .net</tags>
+    <dependencies>
+        <dependency id="RestSharp" version="105.2.3" />
+        <dependency id="Newtonsoft.Json" version="7.0.1" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="bin/Khipu.dll" target="lib"/>
+  </files>
+</package>
