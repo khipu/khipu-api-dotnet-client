@@ -11,13 +11,20 @@ namespace Khipu.Model {
   /// 
   /// </summary>
   [DataContract]
-  public class BanksResponse {
+  public class ReceiversCreateResponse {
     
     /// <summary>
-    /// Gets or Sets Banks
+    /// Gets or Sets ReceiverId
     /// </summary>
-    [DataMember(Name="banks", EmitDefaultValue=false)]
-    public List<BankItem> Banks { get; set; }
+    [DataMember(Name="receiver_id", EmitDefaultValue=false)]
+    public string ReceiverId { get; set; }
+
+    
+    /// <summary>
+    /// Gets or Sets Secret
+    /// </summary>
+    [DataMember(Name="secret", EmitDefaultValue=false)]
+    public string Secret { get; set; }
 
     
 
@@ -27,9 +34,11 @@ namespace Khipu.Model {
     /// <returns>String presentation of the object</returns>
     public override string ToString()  {
       var sb = new StringBuilder();
-      sb.Append("class BanksResponse {\n");
+      sb.Append("class ReceiversCreateResponse {\n");
       
-      sb.Append("  Banks: ").Append(Banks).Append("\n");
+      sb.Append("  ReceiverId: ").Append(ReceiverId).Append("\n");
+      
+      sb.Append("  Secret: ").Append(Secret).Append("\n");
       
       sb.Append("}\n");
       return sb.ToString();

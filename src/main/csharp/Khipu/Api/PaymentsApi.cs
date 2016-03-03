@@ -21,8 +21,8 @@ namespace Khipu.Api
         /// Información completa del pago. Datos con los que fue creado y el estado actual del pago. Se obtiene del notification_token que envia khipu cuando el pago es conciliado.
         /// </remarks>
         /// <param name="notificationToken">Token de notifiación recibido usando la API de notificaiones 1.3 o superior.</param>
-        /// <returns>PaymentResponse</returns>
-        PaymentResponse PaymentsGet (string notificationToken);
+        /// <returns>PaymentsResponse</returns>
+        PaymentsResponse PaymentsGet (string notificationToken);
   
         /// <summary>
         /// Obtener información de un pago
@@ -31,8 +31,8 @@ namespace Khipu.Api
         /// Información completa del pago. Datos con los que fue creado y el estado actual del pago. Se obtiene del notification_token que envia khipu cuando el pago es conciliado.
         /// </remarks>
         /// <param name="notificationToken">Token de notifiación recibido usando la API de notificaiones 1.3 o superior.</param>
-        /// <returns>PaymentResponse</returns>
-        System.Threading.Tasks.Task<PaymentResponse> PaymentsGetAsync (string notificationToken);
+        /// <returns>PaymentsResponse</returns>
+        System.Threading.Tasks.Task<PaymentsResponse> PaymentsGetAsync (string notificationToken);
         
         /// <summary>
         /// Crear un pago
@@ -42,7 +42,7 @@ namespace Khipu.Api
         /// </remarks>
         /// <param name="subject">Motivo</param>
         /// <param name="currency">El código de moneda en formato ISO-4217</param>
-        /// <param name="amount">El monto del cobro. Sin separador de miles y usando \&quot;.\&quot; como separador de decimales. Hasta 4 lugares decimales, dependiendo de la moneda.</param>
+        /// <param name="amount">El monto del cobro. Sin separador de miles y usando &#39;.&#39; como separador de decimales. Hasta 4 lugares decimales, dependiendo de la moneda</param>
         /// <param name="transactionId">Identificador propio de la  transacción. Ej: número de factura u orden de compra</param>
         /// <param name="custom">Parámetro para enviar información personalizada de la transacción. Ej: documento XML con el detalle del carro de compra</param>
         /// <param name="body">Descripción del cobro</param>
@@ -53,15 +53,15 @@ namespace Khipu.Api
         /// <param name="notifyUrl">La dirección del web-service que utilizará khipu para notificar cuando el pago esté conciliado</param>
         /// <param name="notifyApiVersion">Versión de la API de notifiaciones para recibir avisos por web-service</param>
         /// <param name="expiresDate">Fecha de expiración del cobro. Pasada esta fecha el cobro es inválido. Formato ISO-8601. Ej: 2017-03-01T13:00:00Z</param>
-        /// <param name="sendEmail">Si es \&quot;true\&quot;, se enviará una solicitud de cobro al correo especificado en \&quot;payer_email\&quot;</param>
-        /// <param name="payerName">Nombre del pagador. Es obligatorio cuando send_email es \&quot;true\&quot;</param>
-        /// <param name="payerEmail">Correo del pagador. Es obligatorio cuando send_email es \&quot;true\&quot;</param>
-        /// <param name="sendReminders">Si es \&quot;true\&quot;, se enviarán recordatorios de cobro.</param>
+        /// <param name="sendEmail">Si es &#39;true&#39;, se enviará una solicitud de cobro al correo especificado en &#39;payer_email&#39;</param>
+        /// <param name="payerName">Nombre del pagador. Es obligatorio cuando send_email es &#39;true&#39;</param>
+        /// <param name="payerEmail">Correo del pagador. Es obligatorio cuando send_email es &#39;true&#39;</param>
+        /// <param name="sendReminders">Si es &#39;true&#39;, se enviarán recordatorios de cobro.</param>
         /// <param name="responsibleUserEmail">Correo electrónico del responsable de este cobro, debe corresponder a un usuario khipu con permisos para cobrar usando esta cuenta de cobro</param>
         /// <param name="fixedPayerPersonalIdentifier">Identificador personal. Si se especifica, solo podrá ser pagado usando ese identificador</param>
         /// <param name="integratorFee">Comisión para el integrador. Sólo es válido si la cuenta de cobro tiene una cuenta de integrador asociada</param>
-        /// <returns>CreateResponse</returns>
-        CreateResponse PaymentsPost (string subject, string currency, double? amount, string transactionId, string custom, string body, string bankId, string returnUrl, string cancelUrl, string pictureUrl, string notifyUrl, string notifyApiVersion, DateTime? expiresDate, bool? sendEmail, string payerName, string payerEmail, bool? sendReminders, string responsibleUserEmail, string fixedPayerPersonalIdentifier, double? integratorFee);
+        /// <returns>PaymentsCreateResponse</returns>
+        PaymentsCreateResponse PaymentsPost (string subject, string currency, double? amount, string transactionId, string custom, string body, string bankId, string returnUrl, string cancelUrl, string pictureUrl, string notifyUrl, string notifyApiVersion, DateTime? expiresDate, bool? sendEmail, string payerName, string payerEmail, bool? sendReminders, string responsibleUserEmail, string fixedPayerPersonalIdentifier, double? integratorFee);
   
         /// <summary>
         /// Crear un pago
@@ -71,7 +71,7 @@ namespace Khipu.Api
         /// </remarks>
         /// <param name="subject">Motivo</param>
         /// <param name="currency">El código de moneda en formato ISO-4217</param>
-        /// <param name="amount">El monto del cobro. Sin separador de miles y usando \&quot;.\&quot; como separador de decimales. Hasta 4 lugares decimales, dependiendo de la moneda.</param>
+        /// <param name="amount">El monto del cobro. Sin separador de miles y usando &#39;.&#39; como separador de decimales. Hasta 4 lugares decimales, dependiendo de la moneda</param>
         /// <param name="transactionId">Identificador propio de la  transacción. Ej: número de factura u orden de compra</param>
         /// <param name="custom">Parámetro para enviar información personalizada de la transacción. Ej: documento XML con el detalle del carro de compra</param>
         /// <param name="body">Descripción del cobro</param>
@@ -82,15 +82,15 @@ namespace Khipu.Api
         /// <param name="notifyUrl">La dirección del web-service que utilizará khipu para notificar cuando el pago esté conciliado</param>
         /// <param name="notifyApiVersion">Versión de la API de notifiaciones para recibir avisos por web-service</param>
         /// <param name="expiresDate">Fecha de expiración del cobro. Pasada esta fecha el cobro es inválido. Formato ISO-8601. Ej: 2017-03-01T13:00:00Z</param>
-        /// <param name="sendEmail">Si es \&quot;true\&quot;, se enviará una solicitud de cobro al correo especificado en \&quot;payer_email\&quot;</param>
-        /// <param name="payerName">Nombre del pagador. Es obligatorio cuando send_email es \&quot;true\&quot;</param>
-        /// <param name="payerEmail">Correo del pagador. Es obligatorio cuando send_email es \&quot;true\&quot;</param>
-        /// <param name="sendReminders">Si es \&quot;true\&quot;, se enviarán recordatorios de cobro.</param>
+        /// <param name="sendEmail">Si es &#39;true&#39;, se enviará una solicitud de cobro al correo especificado en &#39;payer_email&#39;</param>
+        /// <param name="payerName">Nombre del pagador. Es obligatorio cuando send_email es &#39;true&#39;</param>
+        /// <param name="payerEmail">Correo del pagador. Es obligatorio cuando send_email es &#39;true&#39;</param>
+        /// <param name="sendReminders">Si es &#39;true&#39;, se enviarán recordatorios de cobro.</param>
         /// <param name="responsibleUserEmail">Correo electrónico del responsable de este cobro, debe corresponder a un usuario khipu con permisos para cobrar usando esta cuenta de cobro</param>
         /// <param name="fixedPayerPersonalIdentifier">Identificador personal. Si se especifica, solo podrá ser pagado usando ese identificador</param>
         /// <param name="integratorFee">Comisión para el integrador. Sólo es válido si la cuenta de cobro tiene una cuenta de integrador asociada</param>
-        /// <returns>CreateResponse</returns>
-        System.Threading.Tasks.Task<CreateResponse> PaymentsPostAsync (string subject, string currency, double? amount, string transactionId, string custom, string body, string bankId, string returnUrl, string cancelUrl, string pictureUrl, string notifyUrl, string notifyApiVersion, DateTime? expiresDate, bool? sendEmail, string payerName, string payerEmail, bool? sendReminders, string responsibleUserEmail, string fixedPayerPersonalIdentifier, double? integratorFee);
+        /// <returns>PaymentsCreateResponse</returns>
+        System.Threading.Tasks.Task<PaymentsCreateResponse> PaymentsPostAsync (string subject, string currency, double? amount, string transactionId, string custom, string body, string bankId, string returnUrl, string cancelUrl, string pictureUrl, string notifyUrl, string notifyApiVersion, DateTime? expiresDate, bool? sendEmail, string payerName, string payerEmail, bool? sendReminders, string responsibleUserEmail, string fixedPayerPersonalIdentifier, double? integratorFee);
         
         /// <summary>
         /// Obtener información de un pago
@@ -99,8 +99,8 @@ namespace Khipu.Api
         /// Información completa del pago. Datos con los que fue creado y el estado actual del pago.
         /// </remarks>
         /// <param name="id">Identificador del pago</param>
-        /// <returns>PaymentResponse</returns>
-        PaymentResponse PaymentsIdGet (string id);
+        /// <returns>PaymentsResponse</returns>
+        PaymentsResponse PaymentsIdGet (string id);
   
         /// <summary>
         /// Obtener información de un pago
@@ -109,8 +109,8 @@ namespace Khipu.Api
         /// Información completa del pago. Datos con los que fue creado y el estado actual del pago.
         /// </remarks>
         /// <param name="id">Identificador del pago</param>
-        /// <returns>PaymentResponse</returns>
-        System.Threading.Tasks.Task<PaymentResponse> PaymentsIdGetAsync (string id);
+        /// <returns>PaymentsResponse</returns>
+        System.Threading.Tasks.Task<PaymentsResponse> PaymentsIdGetAsync (string id);
         
         /// <summary>
         /// Borrar un pago
@@ -133,24 +133,26 @@ namespace Khipu.Api
         System.Threading.Tasks.Task<SuccessResponse> PaymentsIdDeleteAsync (string id);
         
         /// <summary>
-        /// Reembolsar un pago
+        /// Reembolsar total o parcialmente un pago
         /// </summary>
         /// <remarks>
-        /// Reembolsa el total del monto del pago. Esta operación solo se puede realizar en los comercios que recauden en cuenta khipu y antes de la rendición de los fondos correspondientes.
+        /// Reembolsa total o parcialmente el monto de un pago. Esta operación solo se puede realizar en los comercios que recauden en cuenta khipu y antes de la rendición de los fondos correspondientes.
         /// </remarks>
         /// <param name="id">Identificador del pago</param>
+        /// <param name="amount">El monto a devolver. Sin separador de miles y usando &#39;.&#39; como separador de decimales. Hasta 4 lugares decimales, dependiendo de la moneda. Si se omite el reembolso se hará por el total del monto del pago.</param>
         /// <returns>SuccessResponse</returns>
-        SuccessResponse PaymentsIdRefundsPost (string id);
+        SuccessResponse PaymentsIdRefundsPost (string id, double? amount);
   
         /// <summary>
-        /// Reembolsar un pago
+        /// Reembolsar total o parcialmente un pago
         /// </summary>
         /// <remarks>
-        /// Reembolsa el total del monto del pago. Esta operación solo se puede realizar en los comercios que recauden en cuenta khipu y antes de la rendición de los fondos correspondientes.
+        /// Reembolsa total o parcialmente el monto de un pago. Esta operación solo se puede realizar en los comercios que recauden en cuenta khipu y antes de la rendición de los fondos correspondientes.
         /// </remarks>
         /// <param name="id">Identificador del pago</param>
+        /// <param name="amount">El monto a devolver. Sin separador de miles y usando &#39;.&#39; como separador de decimales. Hasta 4 lugares decimales, dependiendo de la moneda. Si se omite el reembolso se hará por el total del monto del pago.</param>
         /// <returns>SuccessResponse</returns>
-        System.Threading.Tasks.Task<SuccessResponse> PaymentsIdRefundsPostAsync (string id);
+        System.Threading.Tasks.Task<SuccessResponse> PaymentsIdRefundsPostAsync (string id, double? amount);
         
     }
   
@@ -211,8 +213,8 @@ namespace Khipu.Api
         /// Obtener información de un pago Información completa del pago. Datos con los que fue creado y el estado actual del pago. Se obtiene del notification_token que envia khipu cuando el pago es conciliado.
         /// </summary>
         /// <param name="notificationToken">Token de notifiación recibido usando la API de notificaiones 1.3 o superior.</param> 
-        /// <returns>PaymentResponse</returns>            
-        public PaymentResponse PaymentsGet (string notificationToken)
+        /// <returns>PaymentsResponse</returns>            
+        public PaymentsResponse PaymentsGet (string notificationToken)
         {
             
             // verify the required parameter 'notificationToken' is set
@@ -257,15 +259,15 @@ namespace Khipu.Api
             else if (((int)response.StatusCode) == 0)
                 throw new ApiException ((int)response.StatusCode, "Error calling PaymentsGet: " + response.ErrorMessage, response.ErrorMessage);
     
-            return (PaymentResponse) ApiClient.Deserialize(response.Content, typeof(PaymentResponse), response.Headers);
+            return (PaymentsResponse) ApiClient.Deserialize(response.Content, typeof(PaymentsResponse), response.Headers);
         }
     
         /// <summary>
         /// Obtener información de un pago Información completa del pago. Datos con los que fue creado y el estado actual del pago. Se obtiene del notification_token que envia khipu cuando el pago es conciliado.
         /// </summary>
         /// <param name="notificationToken">Token de notifiación recibido usando la API de notificaiones 1.3 o superior.</param>
-        /// <returns>PaymentResponse</returns>
-        public async System.Threading.Tasks.Task<PaymentResponse> PaymentsGetAsync (string notificationToken)
+        /// <returns>PaymentsResponse</returns>
+        public async System.Threading.Tasks.Task<PaymentsResponse> PaymentsGetAsync (string notificationToken)
         {
             // verify the required parameter 'notificationToken' is set
             if (notificationToken == null) throw new ApiException(400, "Missing required parameter 'notificationToken' when calling PaymentsGet");
@@ -306,7 +308,7 @@ namespace Khipu.Api
             if (((int)response.StatusCode) >= 400)
                 throw new ApiException ((int)response.StatusCode, "Error calling PaymentsGet: " + response.Content, response.Content);
 
-            return (PaymentResponse) ApiClient.Deserialize(response.Content, typeof(PaymentResponse), response.Headers);
+            return (PaymentsResponse) ApiClient.Deserialize(response.Content, typeof(PaymentsResponse), response.Headers);
         }
         
         /// <summary>
@@ -314,7 +316,7 @@ namespace Khipu.Api
         /// </summary>
         /// <param name="subject">Motivo</param> 
         /// <param name="currency">El código de moneda en formato ISO-4217</param> 
-        /// <param name="amount">El monto del cobro. Sin separador de miles y usando \&quot;.\&quot; como separador de decimales. Hasta 4 lugares decimales, dependiendo de la moneda.</param> 
+        /// <param name="amount">El monto del cobro. Sin separador de miles y usando &#39;.&#39; como separador de decimales. Hasta 4 lugares decimales, dependiendo de la moneda</param> 
         /// <param name="transactionId">Identificador propio de la  transacción. Ej: número de factura u orden de compra</param> 
         /// <param name="custom">Parámetro para enviar información personalizada de la transacción. Ej: documento XML con el detalle del carro de compra</param> 
         /// <param name="body">Descripción del cobro</param> 
@@ -325,15 +327,15 @@ namespace Khipu.Api
         /// <param name="notifyUrl">La dirección del web-service que utilizará khipu para notificar cuando el pago esté conciliado</param> 
         /// <param name="notifyApiVersion">Versión de la API de notifiaciones para recibir avisos por web-service</param> 
         /// <param name="expiresDate">Fecha de expiración del cobro. Pasada esta fecha el cobro es inválido. Formato ISO-8601. Ej: 2017-03-01T13:00:00Z</param> 
-        /// <param name="sendEmail">Si es \&quot;true\&quot;, se enviará una solicitud de cobro al correo especificado en \&quot;payer_email\&quot;</param> 
-        /// <param name="payerName">Nombre del pagador. Es obligatorio cuando send_email es \&quot;true\&quot;</param> 
-        /// <param name="payerEmail">Correo del pagador. Es obligatorio cuando send_email es \&quot;true\&quot;</param> 
-        /// <param name="sendReminders">Si es \&quot;true\&quot;, se enviarán recordatorios de cobro.</param> 
+        /// <param name="sendEmail">Si es &#39;true&#39;, se enviará una solicitud de cobro al correo especificado en &#39;payer_email&#39;</param> 
+        /// <param name="payerName">Nombre del pagador. Es obligatorio cuando send_email es &#39;true&#39;</param> 
+        /// <param name="payerEmail">Correo del pagador. Es obligatorio cuando send_email es &#39;true&#39;</param> 
+        /// <param name="sendReminders">Si es &#39;true&#39;, se enviarán recordatorios de cobro.</param> 
         /// <param name="responsibleUserEmail">Correo electrónico del responsable de este cobro, debe corresponder a un usuario khipu con permisos para cobrar usando esta cuenta de cobro</param> 
         /// <param name="fixedPayerPersonalIdentifier">Identificador personal. Si se especifica, solo podrá ser pagado usando ese identificador</param> 
         /// <param name="integratorFee">Comisión para el integrador. Sólo es válido si la cuenta de cobro tiene una cuenta de integrador asociada</param> 
-        /// <returns>CreateResponse</returns>            
-        public CreateResponse PaymentsPost (string subject, string currency, double? amount, string transactionId = null, string custom = null, string body = null, string bankId = null, string returnUrl = null, string cancelUrl = null, string pictureUrl = null, string notifyUrl = null, string notifyApiVersion = null, DateTime? expiresDate = null, bool? sendEmail = null, string payerName = null, string payerEmail = null, bool? sendReminders = null, string responsibleUserEmail = null, string fixedPayerPersonalIdentifier = null, double? integratorFee = null)
+        /// <returns>PaymentsCreateResponse</returns>            
+        public PaymentsCreateResponse PaymentsPost (string subject, string currency, double? amount, string transactionId = null, string custom = null, string body = null, string bankId = null, string returnUrl = null, string cancelUrl = null, string pictureUrl = null, string notifyUrl = null, string notifyApiVersion = null, DateTime? expiresDate = null, bool? sendEmail = null, string payerName = null, string payerEmail = null, bool? sendReminders = null, string responsibleUserEmail = null, string fixedPayerPersonalIdentifier = null, double? integratorFee = null)
         {
             
             // verify the required parameter 'subject' is set
@@ -403,7 +405,7 @@ namespace Khipu.Api
             else if (((int)response.StatusCode) == 0)
                 throw new ApiException ((int)response.StatusCode, "Error calling PaymentsPost: " + response.ErrorMessage, response.ErrorMessage);
     
-            return (CreateResponse) ApiClient.Deserialize(response.Content, typeof(CreateResponse), response.Headers);
+            return (PaymentsCreateResponse) ApiClient.Deserialize(response.Content, typeof(PaymentsCreateResponse), response.Headers);
         }
     
         /// <summary>
@@ -411,7 +413,7 @@ namespace Khipu.Api
         /// </summary>
         /// <param name="subject">Motivo</param>
         /// <param name="currency">El código de moneda en formato ISO-4217</param>
-        /// <param name="amount">El monto del cobro. Sin separador de miles y usando \&quot;.\&quot; como separador de decimales. Hasta 4 lugares decimales, dependiendo de la moneda.</param>
+        /// <param name="amount">El monto del cobro. Sin separador de miles y usando &#39;.&#39; como separador de decimales. Hasta 4 lugares decimales, dependiendo de la moneda</param>
         /// <param name="transactionId">Identificador propio de la  transacción. Ej: número de factura u orden de compra</param>
         /// <param name="custom">Parámetro para enviar información personalizada de la transacción. Ej: documento XML con el detalle del carro de compra</param>
         /// <param name="body">Descripción del cobro</param>
@@ -422,15 +424,15 @@ namespace Khipu.Api
         /// <param name="notifyUrl">La dirección del web-service que utilizará khipu para notificar cuando el pago esté conciliado</param>
         /// <param name="notifyApiVersion">Versión de la API de notifiaciones para recibir avisos por web-service</param>
         /// <param name="expiresDate">Fecha de expiración del cobro. Pasada esta fecha el cobro es inválido. Formato ISO-8601. Ej: 2017-03-01T13:00:00Z</param>
-        /// <param name="sendEmail">Si es \&quot;true\&quot;, se enviará una solicitud de cobro al correo especificado en \&quot;payer_email\&quot;</param>
-        /// <param name="payerName">Nombre del pagador. Es obligatorio cuando send_email es \&quot;true\&quot;</param>
-        /// <param name="payerEmail">Correo del pagador. Es obligatorio cuando send_email es \&quot;true\&quot;</param>
-        /// <param name="sendReminders">Si es \&quot;true\&quot;, se enviarán recordatorios de cobro.</param>
+        /// <param name="sendEmail">Si es &#39;true&#39;, se enviará una solicitud de cobro al correo especificado en &#39;payer_email&#39;</param>
+        /// <param name="payerName">Nombre del pagador. Es obligatorio cuando send_email es &#39;true&#39;</param>
+        /// <param name="payerEmail">Correo del pagador. Es obligatorio cuando send_email es &#39;true&#39;</param>
+        /// <param name="sendReminders">Si es &#39;true&#39;, se enviarán recordatorios de cobro.</param>
         /// <param name="responsibleUserEmail">Correo electrónico del responsable de este cobro, debe corresponder a un usuario khipu con permisos para cobrar usando esta cuenta de cobro</param>
         /// <param name="fixedPayerPersonalIdentifier">Identificador personal. Si se especifica, solo podrá ser pagado usando ese identificador</param>
         /// <param name="integratorFee">Comisión para el integrador. Sólo es válido si la cuenta de cobro tiene una cuenta de integrador asociada</param>
-        /// <returns>CreateResponse</returns>
-        public async System.Threading.Tasks.Task<CreateResponse> PaymentsPostAsync (string subject, string currency, double? amount, string transactionId = null, string custom = null, string body = null, string bankId = null, string returnUrl = null, string cancelUrl = null, string pictureUrl = null, string notifyUrl = null, string notifyApiVersion = null, DateTime? expiresDate = null, bool? sendEmail = null, string payerName = null, string payerEmail = null, bool? sendReminders = null, string responsibleUserEmail = null, string fixedPayerPersonalIdentifier = null, double? integratorFee = null)
+        /// <returns>PaymentsCreateResponse</returns>
+        public async System.Threading.Tasks.Task<PaymentsCreateResponse> PaymentsPostAsync (string subject, string currency, double? amount, string transactionId = null, string custom = null, string body = null, string bankId = null, string returnUrl = null, string cancelUrl = null, string pictureUrl = null, string notifyUrl = null, string notifyApiVersion = null, DateTime? expiresDate = null, bool? sendEmail = null, string payerName = null, string payerEmail = null, bool? sendReminders = null, string responsibleUserEmail = null, string fixedPayerPersonalIdentifier = null, double? integratorFee = null)
         {
             // verify the required parameter 'subject' is set
             if (subject == null) throw new ApiException(400, "Missing required parameter 'subject' when calling PaymentsPost");
@@ -494,15 +496,15 @@ namespace Khipu.Api
             if (((int)response.StatusCode) >= 400)
                 throw new ApiException ((int)response.StatusCode, "Error calling PaymentsPost: " + response.Content, response.Content);
 
-            return (CreateResponse) ApiClient.Deserialize(response.Content, typeof(CreateResponse), response.Headers);
+            return (PaymentsCreateResponse) ApiClient.Deserialize(response.Content, typeof(PaymentsCreateResponse), response.Headers);
         }
         
         /// <summary>
         /// Obtener información de un pago Información completa del pago. Datos con los que fue creado y el estado actual del pago.
         /// </summary>
         /// <param name="id">Identificador del pago</param> 
-        /// <returns>PaymentResponse</returns>            
-        public PaymentResponse PaymentsIdGet (string id)
+        /// <returns>PaymentsResponse</returns>            
+        public PaymentsResponse PaymentsIdGet (string id)
         {
             
             // verify the required parameter 'id' is set
@@ -547,15 +549,15 @@ namespace Khipu.Api
             else if (((int)response.StatusCode) == 0)
                 throw new ApiException ((int)response.StatusCode, "Error calling PaymentsIdGet: " + response.ErrorMessage, response.ErrorMessage);
     
-            return (PaymentResponse) ApiClient.Deserialize(response.Content, typeof(PaymentResponse), response.Headers);
+            return (PaymentsResponse) ApiClient.Deserialize(response.Content, typeof(PaymentsResponse), response.Headers);
         }
     
         /// <summary>
         /// Obtener información de un pago Información completa del pago. Datos con los que fue creado y el estado actual del pago.
         /// </summary>
         /// <param name="id">Identificador del pago</param>
-        /// <returns>PaymentResponse</returns>
-        public async System.Threading.Tasks.Task<PaymentResponse> PaymentsIdGetAsync (string id)
+        /// <returns>PaymentsResponse</returns>
+        public async System.Threading.Tasks.Task<PaymentsResponse> PaymentsIdGetAsync (string id)
         {
             // verify the required parameter 'id' is set
             if (id == null) throw new ApiException(400, "Missing required parameter 'id' when calling PaymentsIdGet");
@@ -596,7 +598,7 @@ namespace Khipu.Api
             if (((int)response.StatusCode) >= 400)
                 throw new ApiException ((int)response.StatusCode, "Error calling PaymentsIdGet: " + response.Content, response.Content);
 
-            return (PaymentResponse) ApiClient.Deserialize(response.Content, typeof(PaymentResponse), response.Headers);
+            return (PaymentsResponse) ApiClient.Deserialize(response.Content, typeof(PaymentsResponse), response.Headers);
         }
         
         /// <summary>
@@ -702,11 +704,12 @@ namespace Khipu.Api
         }
         
         /// <summary>
-        /// Reembolsar un pago Reembolsa el total del monto del pago. Esta operación solo se puede realizar en los comercios que recauden en cuenta khipu y antes de la rendición de los fondos correspondientes.
+        /// Reembolsar total o parcialmente un pago Reembolsa total o parcialmente el monto de un pago. Esta operación solo se puede realizar en los comercios que recauden en cuenta khipu y antes de la rendición de los fondos correspondientes.
         /// </summary>
         /// <param name="id">Identificador del pago</param> 
+        /// <param name="amount">El monto a devolver. Sin separador de miles y usando &#39;.&#39; como separador de decimales. Hasta 4 lugares decimales, dependiendo de la moneda. Si se omite el reembolso se hará por el total del monto del pago.</param> 
         /// <returns>SuccessResponse</returns>            
-        public SuccessResponse PaymentsIdRefundsPost (string id)
+        public SuccessResponse PaymentsIdRefundsPost (string id, double? amount = null)
         {
             
             // verify the required parameter 'id' is set
@@ -737,6 +740,7 @@ namespace Khipu.Api
             
             
             
+            if (amount != null) formParams.Add("amount", ApiClient.ParameterToString(amount)); // form parameter
             
             
     
@@ -755,11 +759,12 @@ namespace Khipu.Api
         }
     
         /// <summary>
-        /// Reembolsar un pago Reembolsa el total del monto del pago. Esta operación solo se puede realizar en los comercios que recauden en cuenta khipu y antes de la rendición de los fondos correspondientes.
+        /// Reembolsar total o parcialmente un pago Reembolsa total o parcialmente el monto de un pago. Esta operación solo se puede realizar en los comercios que recauden en cuenta khipu y antes de la rendición de los fondos correspondientes.
         /// </summary>
         /// <param name="id">Identificador del pago</param>
+        /// <param name="amount">El monto a devolver. Sin separador de miles y usando &#39;.&#39; como separador de decimales. Hasta 4 lugares decimales, dependiendo de la moneda. Si se omite el reembolso se hará por el total del monto del pago.</param>
         /// <returns>SuccessResponse</returns>
-        public async System.Threading.Tasks.Task<SuccessResponse> PaymentsIdRefundsPostAsync (string id)
+        public async System.Threading.Tasks.Task<SuccessResponse> PaymentsIdRefundsPostAsync (string id, double? amount = null)
         {
             // verify the required parameter 'id' is set
             if (id == null) throw new ApiException(400, "Missing required parameter 'id' when calling PaymentsIdRefundsPost");
@@ -789,6 +794,7 @@ namespace Khipu.Api
             
             
             
+            if (amount != null) formParams.Add("amount", ApiClient.ParameterToString(amount)); // form parameter
             
             
     

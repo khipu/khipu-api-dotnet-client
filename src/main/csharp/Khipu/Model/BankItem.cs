@@ -14,6 +14,13 @@ namespace Khipu.Model {
   public class BankItem {
     
     /// <summary>
+    /// Gets or Sets BankId
+    /// </summary>
+    [DataMember(Name="bank_id", EmitDefaultValue=false)]
+    public string BankId { get; set; }
+
+    
+    /// <summary>
     /// Gets or Sets Name
     /// </summary>
     [DataMember(Name="name", EmitDefaultValue=false)]
@@ -56,6 +63,8 @@ namespace Khipu.Model {
     public override string ToString()  {
       var sb = new StringBuilder();
       sb.Append("class BankItem {\n");
+      
+      sb.Append("  BankId: ").Append(BankId).Append("\n");
       
       sb.Append("  Name: ").Append(Name).Append("\n");
       
