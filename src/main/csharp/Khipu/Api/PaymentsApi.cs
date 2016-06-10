@@ -51,6 +51,7 @@ namespace Khipu.Api
         /// <param name="cancelUrl">La dirección URL a donde enviar al cliente si decide no hacer hacer la transacción</param>
         /// <param name="pictureUrl">Una dirección URL de una foto de tu producto o servicio</param>
         /// <param name="notifyUrl">La dirección del web-service que utilizará khipu para notificar cuando el pago esté conciliado</param>
+        /// <param name="contractUrl">La dirección URL del archivo PDF con el contrato a firmar mediante este pago. El cobrador debe estar habilitado para este servicio y el campo &#39;fixed_payer_personal_identifier&#39; es obgligatorio</param>
         /// <param name="notifyApiVersion">Versión de la API de notifiaciones para recibir avisos por web-service</param>
         /// <param name="expiresDate">Fecha de expiración del cobro. Pasada esta fecha el cobro es inválido. Formato ISO-8601. Ej: 2017-03-01T13:00:00Z</param>
         /// <param name="sendEmail">Si es &#39;true&#39;, se enviará una solicitud de cobro al correo especificado en &#39;payer_email&#39;</param>
@@ -61,7 +62,7 @@ namespace Khipu.Api
         /// <param name="fixedPayerPersonalIdentifier">Identificador personal. Si se especifica, solo podrá ser pagado usando ese identificador</param>
         /// <param name="integratorFee">Comisión para el integrador. Sólo es válido si la cuenta de cobro tiene una cuenta de integrador asociada</param>
         /// <returns>PaymentsCreateResponse</returns>
-        PaymentsCreateResponse PaymentsPost (string subject, string currency, double? amount, string transactionId, string custom, string body, string bankId, string returnUrl, string cancelUrl, string pictureUrl, string notifyUrl, string notifyApiVersion, DateTime? expiresDate, bool? sendEmail, string payerName, string payerEmail, bool? sendReminders, string responsibleUserEmail, string fixedPayerPersonalIdentifier, double? integratorFee);
+        PaymentsCreateResponse PaymentsPost (string subject, string currency, double? amount, string transactionId, string custom, string body, string bankId, string returnUrl, string cancelUrl, string pictureUrl, string notifyUrl, string contractUrl, string notifyApiVersion, DateTime? expiresDate, bool? sendEmail, string payerName, string payerEmail, bool? sendReminders, string responsibleUserEmail, string fixedPayerPersonalIdentifier, double? integratorFee);
   
         /// <summary>
         /// Crear un pago
@@ -80,6 +81,7 @@ namespace Khipu.Api
         /// <param name="cancelUrl">La dirección URL a donde enviar al cliente si decide no hacer hacer la transacción</param>
         /// <param name="pictureUrl">Una dirección URL de una foto de tu producto o servicio</param>
         /// <param name="notifyUrl">La dirección del web-service que utilizará khipu para notificar cuando el pago esté conciliado</param>
+        /// <param name="contractUrl">La dirección URL del archivo PDF con el contrato a firmar mediante este pago. El cobrador debe estar habilitado para este servicio y el campo &#39;fixed_payer_personal_identifier&#39; es obgligatorio</param>
         /// <param name="notifyApiVersion">Versión de la API de notifiaciones para recibir avisos por web-service</param>
         /// <param name="expiresDate">Fecha de expiración del cobro. Pasada esta fecha el cobro es inválido. Formato ISO-8601. Ej: 2017-03-01T13:00:00Z</param>
         /// <param name="sendEmail">Si es &#39;true&#39;, se enviará una solicitud de cobro al correo especificado en &#39;payer_email&#39;</param>
@@ -90,7 +92,7 @@ namespace Khipu.Api
         /// <param name="fixedPayerPersonalIdentifier">Identificador personal. Si se especifica, solo podrá ser pagado usando ese identificador</param>
         /// <param name="integratorFee">Comisión para el integrador. Sólo es válido si la cuenta de cobro tiene una cuenta de integrador asociada</param>
         /// <returns>PaymentsCreateResponse</returns>
-        System.Threading.Tasks.Task<PaymentsCreateResponse> PaymentsPostAsync (string subject, string currency, double? amount, string transactionId, string custom, string body, string bankId, string returnUrl, string cancelUrl, string pictureUrl, string notifyUrl, string notifyApiVersion, DateTime? expiresDate, bool? sendEmail, string payerName, string payerEmail, bool? sendReminders, string responsibleUserEmail, string fixedPayerPersonalIdentifier, double? integratorFee);
+        System.Threading.Tasks.Task<PaymentsCreateResponse> PaymentsPostAsync (string subject, string currency, double? amount, string transactionId, string custom, string body, string bankId, string returnUrl, string cancelUrl, string pictureUrl, string notifyUrl, string contractUrl, string notifyApiVersion, DateTime? expiresDate, bool? sendEmail, string payerName, string payerEmail, bool? sendReminders, string responsibleUserEmail, string fixedPayerPersonalIdentifier, double? integratorFee);
         
         /// <summary>
         /// Obtener información de un pago
@@ -325,6 +327,7 @@ namespace Khipu.Api
         /// <param name="cancelUrl">La dirección URL a donde enviar al cliente si decide no hacer hacer la transacción</param> 
         /// <param name="pictureUrl">Una dirección URL de una foto de tu producto o servicio</param> 
         /// <param name="notifyUrl">La dirección del web-service que utilizará khipu para notificar cuando el pago esté conciliado</param> 
+        /// <param name="contractUrl">La dirección URL del archivo PDF con el contrato a firmar mediante este pago. El cobrador debe estar habilitado para este servicio y el campo &#39;fixed_payer_personal_identifier&#39; es obgligatorio</param> 
         /// <param name="notifyApiVersion">Versión de la API de notifiaciones para recibir avisos por web-service</param> 
         /// <param name="expiresDate">Fecha de expiración del cobro. Pasada esta fecha el cobro es inválido. Formato ISO-8601. Ej: 2017-03-01T13:00:00Z</param> 
         /// <param name="sendEmail">Si es &#39;true&#39;, se enviará una solicitud de cobro al correo especificado en &#39;payer_email&#39;</param> 
@@ -335,7 +338,7 @@ namespace Khipu.Api
         /// <param name="fixedPayerPersonalIdentifier">Identificador personal. Si se especifica, solo podrá ser pagado usando ese identificador</param> 
         /// <param name="integratorFee">Comisión para el integrador. Sólo es válido si la cuenta de cobro tiene una cuenta de integrador asociada</param> 
         /// <returns>PaymentsCreateResponse</returns>            
-        public PaymentsCreateResponse PaymentsPost (string subject, string currency, double? amount, string transactionId = null, string custom = null, string body = null, string bankId = null, string returnUrl = null, string cancelUrl = null, string pictureUrl = null, string notifyUrl = null, string notifyApiVersion = null, DateTime? expiresDate = null, bool? sendEmail = null, string payerName = null, string payerEmail = null, bool? sendReminders = null, string responsibleUserEmail = null, string fixedPayerPersonalIdentifier = null, double? integratorFee = null)
+        public PaymentsCreateResponse PaymentsPost (string subject, string currency, double? amount, string transactionId = null, string custom = null, string body = null, string bankId = null, string returnUrl = null, string cancelUrl = null, string pictureUrl = null, string notifyUrl = null, string contractUrl = null, string notifyApiVersion = null, DateTime? expiresDate = null, bool? sendEmail = null, string payerName = null, string payerEmail = null, bool? sendReminders = null, string responsibleUserEmail = null, string fixedPayerPersonalIdentifier = null, double? integratorFee = null)
         {
             
             // verify the required parameter 'subject' is set
@@ -382,6 +385,7 @@ namespace Khipu.Api
             if (cancelUrl != null) formParams.Add("cancel_url", ApiClient.ParameterToString(cancelUrl)); // form parameter
             if (pictureUrl != null) formParams.Add("picture_url", ApiClient.ParameterToString(pictureUrl)); // form parameter
             if (notifyUrl != null) formParams.Add("notify_url", ApiClient.ParameterToString(notifyUrl)); // form parameter
+            if (contractUrl != null) formParams.Add("contract_url", ApiClient.ParameterToString(contractUrl)); // form parameter
             if (notifyApiVersion != null) formParams.Add("notify_api_version", ApiClient.ParameterToString(notifyApiVersion)); // form parameter
             if (expiresDate != null) formParams.Add("expires_date", ApiClient.ParameterToString(expiresDate)); // form parameter
             if (sendEmail != null) formParams.Add("send_email", ApiClient.ParameterToString(sendEmail)); // form parameter
@@ -422,6 +426,7 @@ namespace Khipu.Api
         /// <param name="cancelUrl">La dirección URL a donde enviar al cliente si decide no hacer hacer la transacción</param>
         /// <param name="pictureUrl">Una dirección URL de una foto de tu producto o servicio</param>
         /// <param name="notifyUrl">La dirección del web-service que utilizará khipu para notificar cuando el pago esté conciliado</param>
+        /// <param name="contractUrl">La dirección URL del archivo PDF con el contrato a firmar mediante este pago. El cobrador debe estar habilitado para este servicio y el campo &#39;fixed_payer_personal_identifier&#39; es obgligatorio</param>
         /// <param name="notifyApiVersion">Versión de la API de notifiaciones para recibir avisos por web-service</param>
         /// <param name="expiresDate">Fecha de expiración del cobro. Pasada esta fecha el cobro es inválido. Formato ISO-8601. Ej: 2017-03-01T13:00:00Z</param>
         /// <param name="sendEmail">Si es &#39;true&#39;, se enviará una solicitud de cobro al correo especificado en &#39;payer_email&#39;</param>
@@ -432,7 +437,7 @@ namespace Khipu.Api
         /// <param name="fixedPayerPersonalIdentifier">Identificador personal. Si se especifica, solo podrá ser pagado usando ese identificador</param>
         /// <param name="integratorFee">Comisión para el integrador. Sólo es válido si la cuenta de cobro tiene una cuenta de integrador asociada</param>
         /// <returns>PaymentsCreateResponse</returns>
-        public async System.Threading.Tasks.Task<PaymentsCreateResponse> PaymentsPostAsync (string subject, string currency, double? amount, string transactionId = null, string custom = null, string body = null, string bankId = null, string returnUrl = null, string cancelUrl = null, string pictureUrl = null, string notifyUrl = null, string notifyApiVersion = null, DateTime? expiresDate = null, bool? sendEmail = null, string payerName = null, string payerEmail = null, bool? sendReminders = null, string responsibleUserEmail = null, string fixedPayerPersonalIdentifier = null, double? integratorFee = null)
+        public async System.Threading.Tasks.Task<PaymentsCreateResponse> PaymentsPostAsync (string subject, string currency, double? amount, string transactionId = null, string custom = null, string body = null, string bankId = null, string returnUrl = null, string cancelUrl = null, string pictureUrl = null, string notifyUrl = null, string contractUrl = null, string notifyApiVersion = null, DateTime? expiresDate = null, bool? sendEmail = null, string payerName = null, string payerEmail = null, bool? sendReminders = null, string responsibleUserEmail = null, string fixedPayerPersonalIdentifier = null, double? integratorFee = null)
         {
             // verify the required parameter 'subject' is set
             if (subject == null) throw new ApiException(400, "Missing required parameter 'subject' when calling PaymentsPost");
@@ -476,6 +481,7 @@ namespace Khipu.Api
             if (cancelUrl != null) formParams.Add("cancel_url", ApiClient.ParameterToString(cancelUrl)); // form parameter
             if (pictureUrl != null) formParams.Add("picture_url", ApiClient.ParameterToString(pictureUrl)); // form parameter
             if (notifyUrl != null) formParams.Add("notify_url", ApiClient.ParameterToString(notifyUrl)); // form parameter
+            if (contractUrl != null) formParams.Add("contract_url", ApiClient.ParameterToString(contractUrl)); // form parameter
             if (notifyApiVersion != null) formParams.Add("notify_api_version", ApiClient.ParameterToString(notifyApiVersion)); // form parameter
             if (expiresDate != null) formParams.Add("expires_date", ApiClient.ParameterToString(expiresDate)); // form parameter
             if (sendEmail != null) formParams.Add("send_email", ApiClient.ParameterToString(sendEmail)); // form parameter
