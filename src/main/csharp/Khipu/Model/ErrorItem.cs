@@ -14,15 +14,17 @@ namespace Khipu.Model {
   public class ErrorItem {
     
     /// <summary>
-    /// Gets or Sets Field
+    /// Campo que tiene el error de validación
     /// </summary>
+    /// <value>Campo que tiene el error de validación</value>
     [DataMember(Name="field", EmitDefaultValue=false)]
     public string Field { get; set; }
 
     
     /// <summary>
-    /// Gets or Sets Message
+    /// Motivo del error de validación
     /// </summary>
+    /// <value>Motivo del error de validación</value>
     [DataMember(Name="message", EmitDefaultValue=false)]
     public string Message { get; set; }
 

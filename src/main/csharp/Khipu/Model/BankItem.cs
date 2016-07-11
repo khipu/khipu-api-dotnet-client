@@ -14,43 +14,49 @@ namespace Khipu.Model {
   public class BankItem {
     
     /// <summary>
-    /// Gets or Sets BankId
+    /// Identificador del banco
     /// </summary>
+    /// <value>Identificador del banco</value>
     [DataMember(Name="bank_id", EmitDefaultValue=false)]
     public string BankId { get; set; }
 
     
     /// <summary>
-    /// Gets or Sets Name
+    /// Nombre del banco
     /// </summary>
+    /// <value>Nombre del banco</value>
     [DataMember(Name="name", EmitDefaultValue=false)]
     public string Name { get; set; }
 
     
     /// <summary>
-    /// Gets or Sets Message
+    /// Mensaje con particularidades del banco
     /// </summary>
+    /// <value>Mensaje con particularidades del banco</value>
     [DataMember(Name="message", EmitDefaultValue=false)]
     public string Message { get; set; }
 
     
     /// <summary>
-    /// Gets or Sets MinAmount
+    /// Monto mínimo que acepta el banco en un pago
     /// </summary>
+    /// <value>Monto mínimo que acepta el banco en un pago</value>
     [DataMember(Name="min_amount", EmitDefaultValue=false)]
     public double? MinAmount { get; set; }
 
     
     /// <summary>
-    /// Gets or Sets Type
+    /// Tipo de banco
     /// </summary>
+    /// <value>Tipo de banco</value>
     [DataMember(Name="type", EmitDefaultValue=false)]
     public string Type { get; set; }
 
     
     /// <summary>
-    /// Gets or Sets Parent
+    /// Identificador del banco padre (si un banco tiene banca personas y empresas, el primero será el padre del segundo)
     /// </summary>
+    /// <value>Identificador del banco padre (si un banco tiene banca personas y empresas, el primero será el padre del segundo)</value>
     [DataMember(Name="parent", EmitDefaultValue=false)]
     public string Parent { get; set; }
 

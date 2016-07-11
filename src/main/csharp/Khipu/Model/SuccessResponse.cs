@@ -14,8 +14,9 @@ namespace Khipu.Model {
   public class SuccessResponse {
     
     /// <summary>
-    /// Gets or Sets Message
+    /// Mensaje a desplegar al usuario
     /// </summary>
+    /// <value>Mensaje a desplegar al usuario</value>
     [DataMember(Name="message", EmitDefaultValue=false)]
     public string Message { get; set; }
 

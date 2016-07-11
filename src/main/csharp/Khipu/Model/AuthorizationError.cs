@@ -14,15 +14,17 @@ namespace Khipu.Model {
   public class AuthorizationError {
     
     /// <summary>
-    /// Gets or Sets Status
+    /// Código del error
     /// </summary>
+    /// <value>Código del error</value>
     [DataMember(Name="status", EmitDefaultValue=false)]
     public int? Status { get; set; }
 
     
     /// <summary>
-    /// Gets or Sets Message
+    /// Mensaje del error
     /// </summary>
+    /// <value>Mensaje del error</value>
     [DataMember(Name="message", EmitDefaultValue=false)]
     public string Message { get; set; }
 

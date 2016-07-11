@@ -14,71 +14,81 @@ namespace Khipu.Model {
   public class PaymentsResponse {
     
     /// <summary>
-    /// Gets or Sets PaymentId
+    /// Identificador único del pago, es una cadena alfanumérica de 12 caracteres
     /// </summary>
+    /// <value>Identificador único del pago, es una cadena alfanumérica de 12 caracteres</value>
     [DataMember(Name="payment_id", EmitDefaultValue=false)]
     public string PaymentId { get; set; }
 
     
     /// <summary>
-    /// Gets or Sets PaymentUrl
+    /// URL principal del pago, si el usuario no ha elegido previamente un método de pago se le muestran las opciones
     /// </summary>
+    /// <value>URL principal del pago, si el usuario no ha elegido previamente un método de pago se le muestran las opciones</value>
     [DataMember(Name="payment_url", EmitDefaultValue=false)]
     public string PaymentUrl { get; set; }
 
     
     /// <summary>
-    /// Gets or Sets SimplifiedTransferUrl
+    /// URL de pago simplificado
     /// </summary>
+    /// <value>URL de pago simplificado</value>
     [DataMember(Name="simplified_transfer_url", EmitDefaultValue=false)]
     public string SimplifiedTransferUrl { get; set; }
 
     
     /// <summary>
-    /// Gets or Sets TransferUrl
+    /// URL de pago normal
     /// </summary>
+    /// <value>URL de pago normal</value>
     [DataMember(Name="transfer_url", EmitDefaultValue=false)]
     public string TransferUrl { get; set; }
 
     
     /// <summary>
-    /// Gets or Sets AppUrl
+    /// URL para invocar el pago desde un dispositivo móvil usando la APP de khipu
     /// </summary>
+    /// <value>URL para invocar el pago desde un dispositivo móvil usando la APP de khipu</value>
     [DataMember(Name="app_url", EmitDefaultValue=false)]
     public string AppUrl { get; set; }
 
     
     /// <summary>
-    /// Gets or Sets ReadyForTerminal
+    /// Es 'true' si el pago ya cuenta con todos los datos necesarios para abrir directamente la aplicación de pagos khipu
     /// </summary>
+    /// <value>Es 'true' si el pago ya cuenta con todos los datos necesarios para abrir directamente la aplicación de pagos khipu</value>
     [DataMember(Name="ready_for_terminal", EmitDefaultValue=false)]
     public bool? ReadyForTerminal { get; set; }
 
     
     /// <summary>
-    /// Gets or Sets NotificationToken
+    /// Cadena de caracteres alfanuméricos que identifican unicamente al pago, es el identificador que el servidor de khipu enviará al servidor del comercio cuando notifique que un pago está conciliado
     /// </summary>
+    /// <value>Cadena de caracteres alfanuméricos que identifican unicamente al pago, es el identificador que el servidor de khipu enviará al servidor del comercio cuando notifique que un pago está conciliado</value>
     [DataMember(Name="notification_token", EmitDefaultValue=false)]
     public string NotificationToken { get; set; }
 
     
     /// <summary>
-    /// Gets or Sets ReceiverId
+    /// Identificador único de una cuenta de cobro
     /// </summary>
+    /// <value>Identificador único de una cuenta de cobro</value>
     [DataMember(Name="receiver_id", EmitDefaultValue=false)]
     public long? ReceiverId { get; set; }
 
     
     /// <summary>
-    /// Gets or Sets ConciliationDate
+    /// Fecha y hora de conciliación del pago. Formato ISO-8601. Ej: 2017-03-01T13:00:00Z
     /// </summary>
+    /// <value>Fecha y hora de conciliación del pago. Formato ISO-8601. Ej: 2017-03-01T13:00:00Z</value>
     [DataMember(Name="conciliation_date", EmitDefaultValue=false)]
     public DateTime? ConciliationDate { get; set; }
 
     
     /// <summary>
-    /// Gets or Sets Subject
+    /// Motivo del pago
     /// </summary>
+    /// <value>Motivo del pago</value>
     [DataMember(Name="subject", EmitDefaultValue=false)]
     public string Subject { get; set; }
 
@@ -91,171 +101,203 @@ namespace Khipu.Model {
 
     
     /// <summary>
-    /// Gets or Sets Currency
+    /// El código de moneda en formato ISO-4217
     /// </summary>
+    /// <value>El código de moneda en formato ISO-4217</value>
     [DataMember(Name="currency", EmitDefaultValue=false)]
     public string Currency { get; set; }
 
     
     /// <summary>
-    /// Gets or Sets Status
+    /// Estado del pago, puede ser 'pending' (el pagador aún no comienza a pagar), 'verifying' (se está verificando el pago) o 'done', cuando el pago ya está confirmado
     /// </summary>
+    /// <value>Estado del pago, puede ser 'pending' (el pagador aún no comienza a pagar), 'verifying' (se está verificando el pago) o 'done', cuando el pago ya está confirmado</value>
     [DataMember(Name="status", EmitDefaultValue=false)]
     public string Status { get; set; }
 
     
     /// <summary>
-    /// Gets or Sets StatusDetail
+    /// Detalle del estado del pago, 'pending' (el pagadon aún no comienza a pagar), 'normal' (el pago fue verificado y fue cancelado por algún medio de pago estandar), 'marked-paid-by-receiver' (el cobrador marco el cobro como pagado por otro medio), 'rejected-by-payer' (el pagador declaró que no pagará), 'marked-as-abuse' (el pagador declaró que no pagará y que el cobro fue no solicitado) y 'reversed' (el pago fue anulado por el comercio, el dinero fue devuelto al pagador).
     /// </summary>
+    /// <value>Detalle del estado del pago, 'pending' (el pagadon aún no comienza a pagar), 'normal' (el pago fue verificado y fue cancelado por algún medio de pago estandar), 'marked-paid-by-receiver' (el cobrador marco el cobro como pagado por otro medio), 'rejected-by-payer' (el pagador declaró que no pagará), 'marked-as-abuse' (el pagador declaró que no pagará y que el cobro fue no solicitado) y 'reversed' (el pago fue anulado por el comercio, el dinero fue devuelto al pagador).</value>
     [DataMember(Name="status_detail", EmitDefaultValue=false)]
     public string StatusDetail { get; set; }
 
     
     /// <summary>
-    /// Gets or Sets Body
+    /// Detalle del cobro
     /// </summary>
+    /// <value>Detalle del cobro</value>
     [DataMember(Name="body", EmitDefaultValue=false)]
     public string Body { get; set; }
 
     
     /// <summary>
-    /// Gets or Sets PictureUrl
+    /// URL de cobro
     /// </summary>
+    /// <value>URL de cobro</value>
     [DataMember(Name="picture_url", EmitDefaultValue=false)]
     public string PictureUrl { get; set; }
 
     
     /// <summary>
-    /// Gets or Sets ReceiptUrl
+    /// URL del comprobante de pago
     /// </summary>
+    /// <value>URL del comprobante de pago</value>
     [DataMember(Name="receipt_url", EmitDefaultValue=false)]
     public string ReceiptUrl { get; set; }
 
     
     /// <summary>
-    /// Gets or Sets ReturnUrl
+    /// URL donde se redirige al pagador luego que termina el pago
     /// </summary>
+    /// <value>URL donde se redirige al pagador luego que termina el pago</value>
     [DataMember(Name="return_url", EmitDefaultValue=false)]
     public string ReturnUrl { get; set; }
 
     
     /// <summary>
-    /// Gets or Sets CancelUrl
+    /// URL donde se redirige al pagador luego de que desiste hacer el pago
     /// </summary>
+    /// <value>URL donde se redirige al pagador luego de que desiste hacer el pago</value>
     [DataMember(Name="cancel_url", EmitDefaultValue=false)]
     public string CancelUrl { get; set; }
 
     
     /// <summary>
-    /// Gets or Sets NotifyUrl
+    /// URL del webservice donde se notificará el pago
     /// </summary>
+    /// <value>URL del webservice donde se notificará el pago</value>
     [DataMember(Name="notify_url", EmitDefaultValue=false)]
     public string NotifyUrl { get; set; }
 
     
     /// <summary>
-    /// Gets or Sets NotifyApiVersion
+    /// Versión de la api de notificación
     /// </summary>
+    /// <value>Versión de la api de notificación</value>
     [DataMember(Name="notify_api_version", EmitDefaultValue=false)]
     public string NotifyApiVersion { get; set; }
 
     
     /// <summary>
-    /// Gets or Sets ExpiresDate
+    /// Fecha de expiración del pago. En formato ISO-8601
     /// </summary>
+    /// <value>Fecha de expiración del pago. En formato ISO-8601</value>
     [DataMember(Name="expires_date", EmitDefaultValue=false)]
     public DateTime? ExpiresDate { get; set; }
 
     
     /// <summary>
-    /// Gets or Sets AttachmentUrls
+    /// URLs de archivos adjuntos al pago
     /// </summary>
+    /// <value>URLs de archivos adjuntos al pago</value>
     [DataMember(Name="attachment_urls", EmitDefaultValue=false)]
     public List<string> AttachmentUrls { get; set; }
 
     
     /// <summary>
-    /// Gets or Sets Bank
+    /// Nombre del banco seleccionado por el pagador
     /// </summary>
+    /// <value>Nombre del banco seleccionado por el pagador</value>
     [DataMember(Name="bank", EmitDefaultValue=false)]
     public string Bank { get; set; }
 
     
     /// <summary>
-    /// Gets or Sets BankId
+    /// Identificador del banco seleccionado por el pagador
     /// </summary>
+    /// <value>Identificador del banco seleccionado por el pagador</value>
     [DataMember(Name="bank_id", EmitDefaultValue=false)]
     public string BankId { get; set; }
 
     
     /// <summary>
-    /// Gets or Sets PayerName
+    /// Nombre del pagador
     /// </summary>
+    /// <value>Nombre del pagador</value>
     [DataMember(Name="payer_name", EmitDefaultValue=false)]
     public string PayerName { get; set; }
 
     
     /// <summary>
-    /// Gets or Sets PayerEmail
+    /// Correo electrónico del pagador
     /// </summary>
+    /// <value>Correo electrónico del pagador</value>
     [DataMember(Name="payer_email", EmitDefaultValue=false)]
     public string PayerEmail { get; set; }
 
     
     /// <summary>
-    /// Gets or Sets PersonalIdentifier
+    /// Identificador personal del pagador
     /// </summary>
+    /// <value>Identificador personal del pagador</value>
     [DataMember(Name="personal_identifier", EmitDefaultValue=false)]
     public string PersonalIdentifier { get; set; }
 
     
     /// <summary>
-    /// Gets or Sets BankAccountNumber
+    /// Número de cuenta bancaria del pagador
     /// </summary>
+    /// <value>Número de cuenta bancaria del pagador</value>
     [DataMember(Name="bank_account_number", EmitDefaultValue=false)]
     public string BankAccountNumber { get; set; }
 
     
     /// <summary>
-    /// Gets or Sets OutOfDateConciliation
+    /// Es 'true' si la conciliación del pago fue hecha luego de la fecha de expiración
     /// </summary>
+    /// <value>Es 'true' si la conciliación del pago fue hecha luego de la fecha de expiración</value>
     [DataMember(Name="out_of_date_conciliation", EmitDefaultValue=false)]
     public bool? OutOfDateConciliation { get; set; }
 
     
     /// <summary>
-    /// Gets or Sets TransactionId
+    /// Identificador del pago asignado por el cobrador
     /// </summary>
+    /// <value>Identificador del pago asignado por el cobrador</value>
     [DataMember(Name="transaction_id", EmitDefaultValue=false)]
     public string TransactionId { get; set; }
 
     
     /// <summary>
-    /// Gets or Sets Custom
+    /// Campo genérico que asigna el cobrador al momento de hacer el pago
     /// </summary>
+    /// <value>Campo genérico que asigna el cobrador al momento de hacer el pago</value>
     [DataMember(Name="custom", EmitDefaultValue=false)]
     public string Custom { get; set; }
 
     
     /// <summary>
-    /// Gets or Sets ResponsibleUserEmail
+    /// Correo electrónico de la persona responsable del pago
     /// </summary>
+    /// <value>Correo electrónico de la persona responsable del pago</value>
     [DataMember(Name="responsible_user_email", EmitDefaultValue=false)]
     public string ResponsibleUserEmail { get; set; }
 
     
     /// <summary>
-    /// Gets or Sets SendReminders
+    /// Es 'true' cuando este es un cobro por correo electrónico y khipu enviará recordatorios
     /// </summary>
+    /// <value>Es 'true' cuando este es un cobro por correo electrónico y khipu enviará recordatorios</value>
     [DataMember(Name="send_reminders", EmitDefaultValue=false)]
     public bool? SendReminders { get; set; }
 
     
     /// <summary>
-    /// Gets or Sets SendEmail
+    /// Es 'true' cuando khipu enviará el cobro por correo electrónico
     /// </summary>
+    /// <value>Es 'true' cuando khipu enviará el cobro por correo electrónico</value>
     [DataMember(Name="send_email", EmitDefaultValue=false)]
     public bool? SendEmail { get; set; }
+
+    
+    /// <summary>
+    /// Método de pago usado por el pagador, puede ser 'regular_transfer' (transferencia normal), 'simplified_transfer' (transferencia simplificada) o 'not_available' (para un pago marcado como realizado por otro medio por el cobrador).
+    /// </summary>
+    /// <value>Método de pago usado por el pagador, puede ser 'regular_transfer' (transferencia normal), 'simplified_transfer' (transferencia simplificada) o 'not_available' (para un pago marcado como realizado por otro medio por el cobrador).</value>
+    [DataMember(Name="payment_method", EmitDefaultValue=false)]
+    public string PaymentMethod { get; set; }
 
     
 
@@ -336,6 +378,8 @@ namespace Khipu.Model {
       sb.Append("  SendReminders: ").Append(SendReminders).Append("\n");
       
       sb.Append("  SendEmail: ").Append(SendEmail).Append("\n");
+      
+      sb.Append("  PaymentMethod: ").Append(PaymentMethod).Append("\n");
       
       sb.Append("}\n");
       return sb.ToString();

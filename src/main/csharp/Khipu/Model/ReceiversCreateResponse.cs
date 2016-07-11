@@ -14,15 +14,17 @@ namespace Khipu.Model {
   public class ReceiversCreateResponse {
     
     /// <summary>
-    /// Gets or Sets ReceiverId
+    /// Identificador único de la cuenta de cobro
     /// </summary>
+    /// <value>Identificador único de la cuenta de cobro</value>
     [DataMember(Name="receiver_id", EmitDefaultValue=false)]
     public string ReceiverId { get; set; }
 
     
     /// <summary>
-    /// Gets or Sets Secret
+    /// Llave secreta de la cuenta de cobro, se usa para firmar todas las peticiones
     /// </summary>
+    /// <value>Llave secreta de la cuenta de cobro, se usa para firmar todas las peticiones</value>
     [DataMember(Name="secret", EmitDefaultValue=false)]
     public string Secret { get; set; }
 

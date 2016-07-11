@@ -14,43 +14,49 @@ namespace Khipu.Model {
   public class PaymentsCreateResponse {
     
     /// <summary>
-    /// Gets or Sets PaymentId
+    /// Identificador único del pago, es una cadena alfanumérica de 12 caracteres
     /// </summary>
+    /// <value>Identificador único del pago, es una cadena alfanumérica de 12 caracteres</value>
     [DataMember(Name="payment_id", EmitDefaultValue=false)]
     public string PaymentId { get; set; }
 
     
     /// <summary>
-    /// Gets or Sets PaymentUrl
+    /// URL principal del pago, si el usuario no ha elegido previamente un método de pago se le muestran las opciones
     /// </summary>
+    /// <value>URL principal del pago, si el usuario no ha elegido previamente un método de pago se le muestran las opciones</value>
     [DataMember(Name="payment_url", EmitDefaultValue=false)]
     public string PaymentUrl { get; set; }
 
     
     /// <summary>
-    /// Gets or Sets SimplifiedTransferUrl
+    /// URL de pago simplificado
     /// </summary>
+    /// <value>URL de pago simplificado</value>
     [DataMember(Name="simplified_transfer_url", EmitDefaultValue=false)]
     public string SimplifiedTransferUrl { get; set; }
 
     
     /// <summary>
-    /// Gets or Sets TransferUrl
+    /// URL de pago normal
     /// </summary>
+    /// <value>URL de pago normal</value>
     [DataMember(Name="transfer_url", EmitDefaultValue=false)]
     public string TransferUrl { get; set; }
 
     
     /// <summary>
-    /// Gets or Sets AppUrl
+    /// URL para invocar el pago desde un dispositivo móvil usando la APP de khipu
     /// </summary>
+    /// <value>URL para invocar el pago desde un dispositivo móvil usando la APP de khipu</value>
     [DataMember(Name="app_url", EmitDefaultValue=false)]
     public string AppUrl { get; set; }
 
     
     /// <summary>
-    /// Gets or Sets ReadyForTerminal
+    /// Es 'true' si el pago ya cuenta con todos los datos necesarios para abrir directamente la aplicación de pagos khipu
     /// </summary>
+    /// <value>Es 'true' si el pago ya cuenta con todos los datos necesarios para abrir directamente la aplicación de pagos khipu</value>
     [DataMember(Name="ready_for_terminal", EmitDefaultValue=false)]
     public bool? ReadyForTerminal { get; set; }
 
