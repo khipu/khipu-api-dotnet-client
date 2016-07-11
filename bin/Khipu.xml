@@ -101,7 +101,7 @@
             <param name="notificationToken">Token de notifiación recibido usando la API de notificaiones 1.3 o superior.</param>
             <returns>PaymentsResponse</returns>
         </member>
-        <member name="M:Khipu.Api.IPaymentsApi.PaymentsPost(System.String,System.String,System.Nullable{System.Double},System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.Nullable{System.DateTime},System.Nullable{System.Boolean},System.String,System.String,System.Nullable{System.Boolean},System.String,System.String,System.Nullable{System.Double})">
+        <member name="M:Khipu.Api.IPaymentsApi.PaymentsPost(System.String,System.String,System.Nullable{System.Double},System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.Nullable{System.DateTime},System.Nullable{System.Boolean},System.String,System.String,System.Nullable{System.Boolean},System.String,System.String,System.Nullable{System.Double})">
             <summary>
             Crear un pago
             </summary>
@@ -119,6 +119,7 @@
             <param name="cancelUrl">La dirección URL a donde enviar al cliente si decide no hacer hacer la transacción</param>
             <param name="pictureUrl">Una dirección URL de una foto de tu producto o servicio</param>
             <param name="notifyUrl">La dirección del web-service que utilizará khipu para notificar cuando el pago esté conciliado</param>
+            <param name="contractUrl">La dirección URL del archivo PDF con el contrato a firmar mediante este pago. El cobrador debe estar habilitado para este servicio y el campo &#39;fixed_payer_personal_identifier&#39; es obgligatorio</param>
             <param name="notifyApiVersion">Versión de la API de notifiaciones para recibir avisos por web-service</param>
             <param name="expiresDate">Fecha de expiración del cobro. Pasada esta fecha el cobro es inválido. Formato ISO-8601. Ej: 2017-03-01T13:00:00Z</param>
             <param name="sendEmail">Si es &#39;true&#39;, se enviará una solicitud de cobro al correo especificado en &#39;payer_email&#39;</param>
@@ -130,7 +131,7 @@
             <param name="integratorFee">Comisión para el integrador. Sólo es válido si la cuenta de cobro tiene una cuenta de integrador asociada</param>
             <returns>PaymentsCreateResponse</returns>
         </member>
-        <member name="M:Khipu.Api.IPaymentsApi.PaymentsPostAsync(System.String,System.String,System.Nullable{System.Double},System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.Nullable{System.DateTime},System.Nullable{System.Boolean},System.String,System.String,System.Nullable{System.Boolean},System.String,System.String,System.Nullable{System.Double})">
+        <member name="M:Khipu.Api.IPaymentsApi.PaymentsPostAsync(System.String,System.String,System.Nullable{System.Double},System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.Nullable{System.DateTime},System.Nullable{System.Boolean},System.String,System.String,System.Nullable{System.Boolean},System.String,System.String,System.Nullable{System.Double})">
             <summary>
             Crear un pago
             </summary>
@@ -148,6 +149,7 @@
             <param name="cancelUrl">La dirección URL a donde enviar al cliente si decide no hacer hacer la transacción</param>
             <param name="pictureUrl">Una dirección URL de una foto de tu producto o servicio</param>
             <param name="notifyUrl">La dirección del web-service que utilizará khipu para notificar cuando el pago esté conciliado</param>
+            <param name="contractUrl">La dirección URL del archivo PDF con el contrato a firmar mediante este pago. El cobrador debe estar habilitado para este servicio y el campo &#39;fixed_payer_personal_identifier&#39; es obgligatorio</param>
             <param name="notifyApiVersion">Versión de la API de notifiaciones para recibir avisos por web-service</param>
             <param name="expiresDate">Fecha de expiración del cobro. Pasada esta fecha el cobro es inválido. Formato ISO-8601. Ej: 2017-03-01T13:00:00Z</param>
             <param name="sendEmail">Si es &#39;true&#39;, se enviará una solicitud de cobro al correo especificado en &#39;payer_email&#39;</param>
@@ -266,7 +268,7 @@
             <param name="notificationToken">Token de notifiación recibido usando la API de notificaiones 1.3 o superior.</param>
             <returns>PaymentsResponse</returns>
         </member>
-        <member name="M:Khipu.Api.PaymentsApi.PaymentsPost(System.String,System.String,System.Nullable{System.Double},System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.Nullable{System.DateTime},System.Nullable{System.Boolean},System.String,System.String,System.Nullable{System.Boolean},System.String,System.String,System.Nullable{System.Double})">
+        <member name="M:Khipu.Api.PaymentsApi.PaymentsPost(System.String,System.String,System.Nullable{System.Double},System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.Nullable{System.DateTime},System.Nullable{System.Boolean},System.String,System.String,System.Nullable{System.Boolean},System.String,System.String,System.Nullable{System.Double})">
             <summary>
             Crear un pago Crea un pago en khipu y obtiene las URLs para redirección al usuario para que complete el pago.
             </summary>
@@ -281,6 +283,7 @@
             <param name="cancelUrl">La dirección URL a donde enviar al cliente si decide no hacer hacer la transacción</param> 
             <param name="pictureUrl">Una dirección URL de una foto de tu producto o servicio</param> 
             <param name="notifyUrl">La dirección del web-service que utilizará khipu para notificar cuando el pago esté conciliado</param> 
+            <param name="contractUrl">La dirección URL del archivo PDF con el contrato a firmar mediante este pago. El cobrador debe estar habilitado para este servicio y el campo &#39;fixed_payer_personal_identifier&#39; es obgligatorio</param> 
             <param name="notifyApiVersion">Versión de la API de notifiaciones para recibir avisos por web-service</param> 
             <param name="expiresDate">Fecha de expiración del cobro. Pasada esta fecha el cobro es inválido. Formato ISO-8601. Ej: 2017-03-01T13:00:00Z</param> 
             <param name="sendEmail">Si es &#39;true&#39;, se enviará una solicitud de cobro al correo especificado en &#39;payer_email&#39;</param> 
@@ -292,7 +295,7 @@
             <param name="integratorFee">Comisión para el integrador. Sólo es válido si la cuenta de cobro tiene una cuenta de integrador asociada</param> 
             <returns>PaymentsCreateResponse</returns>            
         </member>
-        <member name="M:Khipu.Api.PaymentsApi.PaymentsPostAsync(System.String,System.String,System.Nullable{System.Double},System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.Nullable{System.DateTime},System.Nullable{System.Boolean},System.String,System.String,System.Nullable{System.Boolean},System.String,System.String,System.Nullable{System.Double})">
+        <member name="M:Khipu.Api.PaymentsApi.PaymentsPostAsync(System.String,System.String,System.Nullable{System.Double},System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.Nullable{System.DateTime},System.Nullable{System.Boolean},System.String,System.String,System.Nullable{System.Boolean},System.String,System.String,System.Nullable{System.Double})">
             <summary>
             Crear un pago Crea un pago en khipu y obtiene las URLs para redirección al usuario para que complete el pago.
             </summary>
@@ -307,6 +310,7 @@
             <param name="cancelUrl">La dirección URL a donde enviar al cliente si decide no hacer hacer la transacción</param>
             <param name="pictureUrl">Una dirección URL de una foto de tu producto o servicio</param>
             <param name="notifyUrl">La dirección del web-service que utilizará khipu para notificar cuando el pago esté conciliado</param>
+            <param name="contractUrl">La dirección URL del archivo PDF con el contrato a firmar mediante este pago. El cobrador debe estar habilitado para este servicio y el campo &#39;fixed_payer_personal_identifier&#39; es obgligatorio</param>
             <param name="notifyApiVersion">Versión de la API de notifiaciones para recibir avisos por web-service</param>
             <param name="expiresDate">Fecha de expiración del cobro. Pasada esta fecha el cobro es inválido. Formato ISO-8601. Ej: 2017-03-01T13:00:00Z</param>
             <param name="sendEmail">Si es &#39;true&#39;, se enviará una solicitud de cobro al correo especificado en &#39;payer_email&#39;</param>
@@ -795,13 +799,15 @@
         </member>
         <member name="P:Khipu.Model.AuthorizationError.Status">
             <summary>
-            Gets or Sets Status
+            Código del error
             </summary>
+            <value>Código del error</value>
         </member>
         <member name="P:Khipu.Model.AuthorizationError.Message">
             <summary>
-            Gets or Sets Message
+            Mensaje del error
             </summary>
+            <value>Mensaje del error</value>
         </member>
         <member name="T:Khipu.Model.BankItem">
             <summary>
@@ -822,33 +828,39 @@
         </member>
         <member name="P:Khipu.Model.BankItem.BankId">
             <summary>
-            Gets or Sets BankId
+            Identificador del banco
             </summary>
+            <value>Identificador del banco</value>
         </member>
         <member name="P:Khipu.Model.BankItem.Name">
             <summary>
-            Gets or Sets Name
+            Nombre del banco
             </summary>
+            <value>Nombre del banco</value>
         </member>
         <member name="P:Khipu.Model.BankItem.Message">
             <summary>
-            Gets or Sets Message
+            Mensaje con particularidades del banco
             </summary>
+            <value>Mensaje con particularidades del banco</value>
         </member>
         <member name="P:Khipu.Model.BankItem.MinAmount">
             <summary>
-            Gets or Sets MinAmount
+            Monto mínimo que acepta el banco en un pago
             </summary>
+            <value>Monto mínimo que acepta el banco en un pago</value>
         </member>
         <member name="P:Khipu.Model.BankItem.Type">
             <summary>
-            Gets or Sets Type
+            Tipo de banco
             </summary>
+            <value>Tipo de banco</value>
         </member>
         <member name="P:Khipu.Model.BankItem.Parent">
             <summary>
-            Gets or Sets Parent
+            Identificador del banco padre (si un banco tiene banca personas y empresas, el primero será el padre del segundo)
             </summary>
+            <value>Identificador del banco padre (si un banco tiene banca personas y empresas, el primero será el padre del segundo)</value>
         </member>
         <member name="T:Khipu.Model.BanksResponse">
             <summary>
@@ -938,13 +950,15 @@
         </member>
         <member name="P:Khipu.Model.ErrorItem.Field">
             <summary>
-            Gets or Sets Field
+            Campo que tiene el error de validación
             </summary>
+            <value>Campo que tiene el error de validación</value>
         </member>
         <member name="P:Khipu.Model.ErrorItem.Message">
             <summary>
-            Gets or Sets Message
+            Motivo del error de validación
             </summary>
+            <value>Motivo del error de validación</value>
         </member>
         <member name="T:Khipu.Model.PaymentResponse">
             <summary>
@@ -1142,33 +1156,39 @@
         </member>
         <member name="P:Khipu.Model.PaymentsCreateResponse.PaymentId">
             <summary>
-            Gets or Sets PaymentId
+            Identificador único del pago, es una cadena alfanumérica de 12 caracteres
             </summary>
+            <value>Identificador único del pago, es una cadena alfanumérica de 12 caracteres</value>
         </member>
         <member name="P:Khipu.Model.PaymentsCreateResponse.PaymentUrl">
             <summary>
-            Gets or Sets PaymentUrl
+            URL principal del pago, si el usuario no ha elegido previamente un método de pago se le muestran las opciones
             </summary>
+            <value>URL principal del pago, si el usuario no ha elegido previamente un método de pago se le muestran las opciones</value>
         </member>
         <member name="P:Khipu.Model.PaymentsCreateResponse.SimplifiedTransferUrl">
             <summary>
-            Gets or Sets SimplifiedTransferUrl
+            URL de pago simplificado
             </summary>
+            <value>URL de pago simplificado</value>
         </member>
         <member name="P:Khipu.Model.PaymentsCreateResponse.TransferUrl">
             <summary>
-            Gets or Sets TransferUrl
+            URL de pago normal
             </summary>
+            <value>URL de pago normal</value>
         </member>
         <member name="P:Khipu.Model.PaymentsCreateResponse.AppUrl">
             <summary>
-            Gets or Sets AppUrl
+            URL para invocar el pago desde un dispositivo móvil usando la APP de khipu
             </summary>
+            <value>URL para invocar el pago desde un dispositivo móvil usando la APP de khipu</value>
         </member>
         <member name="P:Khipu.Model.PaymentsCreateResponse.ReadyForTerminal">
             <summary>
-            Gets or Sets ReadyForTerminal
+            Es 'true' si el pago ya cuenta con todos los datos necesarios para abrir directamente la aplicación de pagos khipu
             </summary>
+            <value>Es 'true' si el pago ya cuenta con todos los datos necesarios para abrir directamente la aplicación de pagos khipu</value>
         </member>
         <member name="T:Khipu.Model.PaymentsResponse">
             <summary>
@@ -1189,53 +1209,63 @@
         </member>
         <member name="P:Khipu.Model.PaymentsResponse.PaymentId">
             <summary>
-            Gets or Sets PaymentId
+            Identificador único del pago, es una cadena alfanumérica de 12 caracteres
             </summary>
+            <value>Identificador único del pago, es una cadena alfanumérica de 12 caracteres</value>
         </member>
         <member name="P:Khipu.Model.PaymentsResponse.PaymentUrl">
             <summary>
-            Gets or Sets PaymentUrl
+            URL principal del pago, si el usuario no ha elegido previamente un método de pago se le muestran las opciones
             </summary>
+            <value>URL principal del pago, si el usuario no ha elegido previamente un método de pago se le muestran las opciones</value>
         </member>
         <member name="P:Khipu.Model.PaymentsResponse.SimplifiedTransferUrl">
             <summary>
-            Gets or Sets SimplifiedTransferUrl
+            URL de pago simplificado
             </summary>
+            <value>URL de pago simplificado</value>
         </member>
         <member name="P:Khipu.Model.PaymentsResponse.TransferUrl">
             <summary>
-            Gets or Sets TransferUrl
+            URL de pago normal
             </summary>
+            <value>URL de pago normal</value>
         </member>
         <member name="P:Khipu.Model.PaymentsResponse.AppUrl">
             <summary>
-            Gets or Sets AppUrl
+            URL para invocar el pago desde un dispositivo móvil usando la APP de khipu
             </summary>
+            <value>URL para invocar el pago desde un dispositivo móvil usando la APP de khipu</value>
         </member>
         <member name="P:Khipu.Model.PaymentsResponse.ReadyForTerminal">
             <summary>
-            Gets or Sets ReadyForTerminal
+            Es 'true' si el pago ya cuenta con todos los datos necesarios para abrir directamente la aplicación de pagos khipu
             </summary>
+            <value>Es 'true' si el pago ya cuenta con todos los datos necesarios para abrir directamente la aplicación de pagos khipu</value>
         </member>
         <member name="P:Khipu.Model.PaymentsResponse.NotificationToken">
             <summary>
-            Gets or Sets NotificationToken
+            Cadena de caracteres alfanuméricos que identifican unicamente al pago, es el identificador que el servidor de khipu enviará al servidor del comercio cuando notifique que un pago está conciliado
             </summary>
+            <value>Cadena de caracteres alfanuméricos que identifican unicamente al pago, es el identificador que el servidor de khipu enviará al servidor del comercio cuando notifique que un pago está conciliado</value>
         </member>
         <member name="P:Khipu.Model.PaymentsResponse.ReceiverId">
             <summary>
-            Gets or Sets ReceiverId
+            Identificador único de una cuenta de cobro
             </summary>
+            <value>Identificador único de una cuenta de cobro</value>
         </member>
         <member name="P:Khipu.Model.PaymentsResponse.ConciliationDate">
             <summary>
-            Gets or Sets ConciliationDate
+            Fecha y hora de conciliación del pago. Formato ISO-8601. Ej: 2017-03-01T13:00:00Z
             </summary>
+            <value>Fecha y hora de conciliación del pago. Formato ISO-8601. Ej: 2017-03-01T13:00:00Z</value>
         </member>
         <member name="P:Khipu.Model.PaymentsResponse.Subject">
             <summary>
-            Gets or Sets Subject
+            Motivo del pago
             </summary>
+            <value>Motivo del pago</value>
         </member>
         <member name="P:Khipu.Model.PaymentsResponse.Amount">
             <summary>
@@ -1244,123 +1274,153 @@
         </member>
         <member name="P:Khipu.Model.PaymentsResponse.Currency">
             <summary>
-            Gets or Sets Currency
+            El código de moneda en formato ISO-4217
             </summary>
+            <value>El código de moneda en formato ISO-4217</value>
         </member>
         <member name="P:Khipu.Model.PaymentsResponse.Status">
             <summary>
-            Gets or Sets Status
+            Estado del pago, puede ser 'pending' (el pagador aún no comienza a pagar), 'verifying' (se está verificando el pago) o 'done', cuando el pago ya está confirmado
             </summary>
+            <value>Estado del pago, puede ser 'pending' (el pagador aún no comienza a pagar), 'verifying' (se está verificando el pago) o 'done', cuando el pago ya está confirmado</value>
         </member>
         <member name="P:Khipu.Model.PaymentsResponse.StatusDetail">
             <summary>
-            Gets or Sets StatusDetail
+            Detalle del estado del pago, 'pending' (el pagadon aún no comienza a pagar), 'normal' (el pago fue verificado y fue cancelado por algún medio de pago estandar), 'marked-paid-by-receiver' (el cobrador marco el cobro como pagado por otro medio), 'rejected-by-payer' (el pagador declaró que no pagará), 'marked-as-abuse' (el pagador declaró que no pagará y que el cobro fue no solicitado) y 'reversed' (el pago fue anulado por el comercio, el dinero fue devuelto al pagador).
             </summary>
+            <value>Detalle del estado del pago, 'pending' (el pagadon aún no comienza a pagar), 'normal' (el pago fue verificado y fue cancelado por algún medio de pago estandar), 'marked-paid-by-receiver' (el cobrador marco el cobro como pagado por otro medio), 'rejected-by-payer' (el pagador declaró que no pagará), 'marked-as-abuse' (el pagador declaró que no pagará y que el cobro fue no solicitado) y 'reversed' (el pago fue anulado por el comercio, el dinero fue devuelto al pagador).</value>
         </member>
         <member name="P:Khipu.Model.PaymentsResponse.Body">
             <summary>
-            Gets or Sets Body
+            Detalle del cobro
             </summary>
+            <value>Detalle del cobro</value>
         </member>
         <member name="P:Khipu.Model.PaymentsResponse.PictureUrl">
             <summary>
-            Gets or Sets PictureUrl
+            URL de cobro
             </summary>
+            <value>URL de cobro</value>
         </member>
         <member name="P:Khipu.Model.PaymentsResponse.ReceiptUrl">
             <summary>
-            Gets or Sets ReceiptUrl
+            URL del comprobante de pago
             </summary>
+            <value>URL del comprobante de pago</value>
         </member>
         <member name="P:Khipu.Model.PaymentsResponse.ReturnUrl">
             <summary>
-            Gets or Sets ReturnUrl
+            URL donde se redirige al pagador luego que termina el pago
             </summary>
+            <value>URL donde se redirige al pagador luego que termina el pago</value>
         </member>
         <member name="P:Khipu.Model.PaymentsResponse.CancelUrl">
             <summary>
-            Gets or Sets CancelUrl
+            URL donde se redirige al pagador luego de que desiste hacer el pago
             </summary>
+            <value>URL donde se redirige al pagador luego de que desiste hacer el pago</value>
         </member>
         <member name="P:Khipu.Model.PaymentsResponse.NotifyUrl">
             <summary>
-            Gets or Sets NotifyUrl
+            URL del webservice donde se notificará el pago
             </summary>
+            <value>URL del webservice donde se notificará el pago</value>
         </member>
         <member name="P:Khipu.Model.PaymentsResponse.NotifyApiVersion">
             <summary>
-            Gets or Sets NotifyApiVersion
+            Versión de la api de notificación
             </summary>
+            <value>Versión de la api de notificación</value>
         </member>
         <member name="P:Khipu.Model.PaymentsResponse.ExpiresDate">
             <summary>
-            Gets or Sets ExpiresDate
+            Fecha de expiración del pago. En formato ISO-8601
             </summary>
+            <value>Fecha de expiración del pago. En formato ISO-8601</value>
         </member>
         <member name="P:Khipu.Model.PaymentsResponse.AttachmentUrls">
             <summary>
-            Gets or Sets AttachmentUrls
+            URLs de archivos adjuntos al pago
             </summary>
+            <value>URLs de archivos adjuntos al pago</value>
         </member>
         <member name="P:Khipu.Model.PaymentsResponse.Bank">
             <summary>
-            Gets or Sets Bank
+            Nombre del banco seleccionado por el pagador
             </summary>
+            <value>Nombre del banco seleccionado por el pagador</value>
         </member>
         <member name="P:Khipu.Model.PaymentsResponse.BankId">
             <summary>
-            Gets or Sets BankId
+            Identificador del banco seleccionado por el pagador
             </summary>
+            <value>Identificador del banco seleccionado por el pagador</value>
         </member>
         <member name="P:Khipu.Model.PaymentsResponse.PayerName">
             <summary>
-            Gets or Sets PayerName
+            Nombre del pagador
             </summary>
+            <value>Nombre del pagador</value>
         </member>
         <member name="P:Khipu.Model.PaymentsResponse.PayerEmail">
             <summary>
-            Gets or Sets PayerEmail
+            Correo electrónico del pagador
             </summary>
+            <value>Correo electrónico del pagador</value>
         </member>
         <member name="P:Khipu.Model.PaymentsResponse.PersonalIdentifier">
             <summary>
-            Gets or Sets PersonalIdentifier
+            Identificador personal del pagador
             </summary>
+            <value>Identificador personal del pagador</value>
         </member>
         <member name="P:Khipu.Model.PaymentsResponse.BankAccountNumber">
             <summary>
-            Gets or Sets BankAccountNumber
+            Número de cuenta bancaria del pagador
             </summary>
+            <value>Número de cuenta bancaria del pagador</value>
         </member>
         <member name="P:Khipu.Model.PaymentsResponse.OutOfDateConciliation">
             <summary>
-            Gets or Sets OutOfDateConciliation
+            Es 'true' si la conciliación del pago fue hecha luego de la fecha de expiración
             </summary>
+            <value>Es 'true' si la conciliación del pago fue hecha luego de la fecha de expiración</value>
         </member>
         <member name="P:Khipu.Model.PaymentsResponse.TransactionId">
             <summary>
-            Gets or Sets TransactionId
+            Identificador del pago asignado por el cobrador
             </summary>
+            <value>Identificador del pago asignado por el cobrador</value>
         </member>
         <member name="P:Khipu.Model.PaymentsResponse.Custom">
             <summary>
-            Gets or Sets Custom
+            Campo genérico que asigna el cobrador al momento de hacer el pago
             </summary>
+            <value>Campo genérico que asigna el cobrador al momento de hacer el pago</value>
         </member>
         <member name="P:Khipu.Model.PaymentsResponse.ResponsibleUserEmail">
             <summary>
-            Gets or Sets ResponsibleUserEmail
+            Correo electrónico de la persona responsable del pago
             </summary>
+            <value>Correo electrónico de la persona responsable del pago</value>
         </member>
         <member name="P:Khipu.Model.PaymentsResponse.SendReminders">
             <summary>
-            Gets or Sets SendReminders
+            Es 'true' cuando este es un cobro por correo electrónico y khipu enviará recordatorios
             </summary>
+            <value>Es 'true' cuando este es un cobro por correo electrónico y khipu enviará recordatorios</value>
         </member>
         <member name="P:Khipu.Model.PaymentsResponse.SendEmail">
             <summary>
-            Gets or Sets SendEmail
+            Es 'true' cuando khipu enviará el cobro por correo electrónico
             </summary>
+            <value>Es 'true' cuando khipu enviará el cobro por correo electrónico</value>
+        </member>
+        <member name="P:Khipu.Model.PaymentsResponse.PaymentMethod">
+            <summary>
+            Método de pago usado por el pagador, puede ser 'regular_transfer' (transferencia normal), 'simplified_transfer' (transferencia simplificada) o 'not_available' (para un pago marcado como realizado por otro medio por el cobrador).
+            </summary>
+            <value>Método de pago usado por el pagador, puede ser 'regular_transfer' (transferencia normal), 'simplified_transfer' (transferencia simplificada) o 'not_available' (para un pago marcado como realizado por otro medio por el cobrador).</value>
         </member>
         <member name="T:Khipu.Model.ReceiversCreateResponse">
             <summary>
@@ -1381,13 +1441,15 @@
         </member>
         <member name="P:Khipu.Model.ReceiversCreateResponse.ReceiverId">
             <summary>
-            Gets or Sets ReceiverId
+            Identificador único de la cuenta de cobro
             </summary>
+            <value>Identificador único de la cuenta de cobro</value>
         </member>
         <member name="P:Khipu.Model.ReceiversCreateResponse.Secret">
             <summary>
-            Gets or Sets Secret
+            Llave secreta de la cuenta de cobro, se usa para firmar todas las peticiones
             </summary>
+            <value>Llave secreta de la cuenta de cobro, se usa para firmar todas las peticiones</value>
         </member>
         <member name="T:Khipu.Model.ServiceError">
             <summary>
@@ -1408,13 +1470,15 @@
         </member>
         <member name="P:Khipu.Model.ServiceError.Status">
             <summary>
-            Gets or Sets Status
+            Código del error
             </summary>
+            <value>Código del error</value>
         </member>
         <member name="P:Khipu.Model.ServiceError.Message">
             <summary>
-            Gets or Sets Message
+            Mensaje del error
             </summary>
+            <value>Mensaje del error</value>
         </member>
         <member name="T:Khipu.Model.SuccessResponse">
             <summary>
@@ -1435,8 +1499,9 @@
         </member>
         <member name="P:Khipu.Model.SuccessResponse.Message">
             <summary>
-            Gets or Sets Message
+            Mensaje a desplegar al usuario
             </summary>
+            <value>Mensaje a desplegar al usuario</value>
         </member>
         <member name="T:Khipu.Model.ValidationError">
             <summary>
@@ -1457,13 +1522,15 @@
         </member>
         <member name="P:Khipu.Model.ValidationError.Status">
             <summary>
-            Gets or Sets Status
+            Código del error
             </summary>
+            <value>Código del error</value>
         </member>
         <member name="P:Khipu.Model.ValidationError.Message">
             <summary>
-            Gets or Sets Message
+            Mensaje del error
             </summary>
+            <value>Mensaje del error</value>
         </member>
         <member name="P:Khipu.Model.ValidationError.Errors">
             <summary>
