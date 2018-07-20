@@ -35,8 +35,14 @@ namespace Khipu.Api
         /// <param name="contactJobTitle">Cargo del contacto del cobrador.</param>
         /// <param name="contactEmail">Correo electrónico del contacto del cobrador.</param>
         /// <param name="contactPhone">Teléfono del contacto del cobrador.</param>
+        /// <param name="bankAccountBankId">Identificador del banco.</param>
+        /// <param name="bankAccountIdentifier">Identificador personal del dueño de la cuenta de banco.</param>
+        /// <param name="bankAccountName">Nombre de la cuenta de banco.</param>
+        /// <param name="bankAccountNumber">Número de la cuenta en el banco.</param>
+        /// <param name="notifyUrl">URL por omisión para el webservice donde se notificará el pago.</param>
+        /// <param name="renditionUrl">URL para el webservice donde se notificará la rendición.</param>
         /// <returns>ReceiversCreateResponse</returns>
-        ReceiversCreateResponse ReceiversPost (string adminFirstName, string adminLastName, string adminEmail, string countryCode, string businessIdentifier, string businessCategory, string businessName, string businessPhone, string businessAddressLine1, string businessAddressLine2, string businessAddressLine3, string contactFullName, string contactJobTitle, string contactEmail, string contactPhone);
+        ReceiversCreateResponse ReceiversPost (string adminFirstName, string adminLastName, string adminEmail, string countryCode, string businessIdentifier, string businessCategory, string businessName, string businessPhone, string businessAddressLine1, string businessAddressLine2, string businessAddressLine3, string contactFullName, string contactJobTitle, string contactEmail, string contactPhone, string bankAccountBankId, string bankAccountIdentifier, string bankAccountName, string bankAccountNumber, string notifyUrl, string renditionUrl);
   
         /// <summary>
         /// Crear una nueva cuenta de cobro
@@ -59,8 +65,14 @@ namespace Khipu.Api
         /// <param name="contactJobTitle">Cargo del contacto del cobrador.</param>
         /// <param name="contactEmail">Correo electrónico del contacto del cobrador.</param>
         /// <param name="contactPhone">Teléfono del contacto del cobrador.</param>
+        /// <param name="bankAccountBankId">Identificador del banco.</param>
+        /// <param name="bankAccountIdentifier">Identificador personal del dueño de la cuenta de banco.</param>
+        /// <param name="bankAccountName">Nombre de la cuenta de banco.</param>
+        /// <param name="bankAccountNumber">Número de la cuenta en el banco.</param>
+        /// <param name="notifyUrl">URL por omisión para el webservice donde se notificará el pago.</param>
+        /// <param name="renditionUrl">URL para el webservice donde se notificará la rendición.</param>
         /// <returns>ReceiversCreateResponse</returns>
-        System.Threading.Tasks.Task<ReceiversCreateResponse> ReceiversPostAsync (string adminFirstName, string adminLastName, string adminEmail, string countryCode, string businessIdentifier, string businessCategory, string businessName, string businessPhone, string businessAddressLine1, string businessAddressLine2, string businessAddressLine3, string contactFullName, string contactJobTitle, string contactEmail, string contactPhone);
+        System.Threading.Tasks.Task<ReceiversCreateResponse> ReceiversPostAsync (string adminFirstName, string adminLastName, string adminEmail, string countryCode, string businessIdentifier, string businessCategory, string businessName, string businessPhone, string businessAddressLine1, string businessAddressLine2, string businessAddressLine3, string contactFullName, string contactJobTitle, string contactEmail, string contactPhone, string bankAccountBankId, string bankAccountIdentifier, string bankAccountName, string bankAccountNumber, string notifyUrl, string renditionUrl);
         
     }
   
@@ -135,8 +147,14 @@ namespace Khipu.Api
         /// <param name="contactJobTitle">Cargo del contacto del cobrador.</param> 
         /// <param name="contactEmail">Correo electrónico del contacto del cobrador.</param> 
         /// <param name="contactPhone">Teléfono del contacto del cobrador.</param> 
+        /// <param name="bankAccountBankId">Identificador del banco.</param> 
+        /// <param name="bankAccountIdentifier">Identificador personal del dueño de la cuenta de banco.</param> 
+        /// <param name="bankAccountName">Nombre de la cuenta de banco.</param> 
+        /// <param name="bankAccountNumber">Número de la cuenta en el banco.</param> 
+        /// <param name="notifyUrl">URL por omisión para el webservice donde se notificará el pago.</param> 
+        /// <param name="renditionUrl">URL para el webservice donde se notificará la rendición.</param> 
         /// <returns>ReceiversCreateResponse</returns>            
-        public ReceiversCreateResponse ReceiversPost (string adminFirstName, string adminLastName, string adminEmail, string countryCode, string businessIdentifier, string businessCategory, string businessName, string businessPhone, string businessAddressLine1, string businessAddressLine2, string businessAddressLine3, string contactFullName, string contactJobTitle, string contactEmail, string contactPhone)
+        public ReceiversCreateResponse ReceiversPost (string adminFirstName, string adminLastName, string adminEmail, string countryCode, string businessIdentifier, string businessCategory, string businessName, string businessPhone, string businessAddressLine1, string businessAddressLine2, string businessAddressLine3, string contactFullName, string contactJobTitle, string contactEmail, string contactPhone, string bankAccountBankId = null, string bankAccountIdentifier = null, string bankAccountName = null, string bankAccountNumber = null, string notifyUrl = null, string renditionUrl = null)
         {
             
             // verify the required parameter 'adminFirstName' is set
@@ -223,6 +241,12 @@ namespace Khipu.Api
             if (contactJobTitle != null) formParams.Add("contact_job_title", ApiClient.ParameterToString(contactJobTitle)); // form parameter
             if (contactEmail != null) formParams.Add("contact_email", ApiClient.ParameterToString(contactEmail)); // form parameter
             if (contactPhone != null) formParams.Add("contact_phone", ApiClient.ParameterToString(contactPhone)); // form parameter
+            if (bankAccountBankId != null) formParams.Add("bank_account_bank_id", ApiClient.ParameterToString(bankAccountBankId)); // form parameter
+            if (bankAccountIdentifier != null) formParams.Add("bank_account_identifier", ApiClient.ParameterToString(bankAccountIdentifier)); // form parameter
+            if (bankAccountName != null) formParams.Add("bank_account_name", ApiClient.ParameterToString(bankAccountName)); // form parameter
+            if (bankAccountNumber != null) formParams.Add("bank_account_number", ApiClient.ParameterToString(bankAccountNumber)); // form parameter
+            if (notifyUrl != null) formParams.Add("notify_url", ApiClient.ParameterToString(notifyUrl)); // form parameter
+            if (renditionUrl != null) formParams.Add("rendition_url", ApiClient.ParameterToString(renditionUrl)); // form parameter
             
             
     
@@ -258,8 +282,14 @@ namespace Khipu.Api
         /// <param name="contactJobTitle">Cargo del contacto del cobrador.</param>
         /// <param name="contactEmail">Correo electrónico del contacto del cobrador.</param>
         /// <param name="contactPhone">Teléfono del contacto del cobrador.</param>
+        /// <param name="bankAccountBankId">Identificador del banco.</param>
+        /// <param name="bankAccountIdentifier">Identificador personal del dueño de la cuenta de banco.</param>
+        /// <param name="bankAccountName">Nombre de la cuenta de banco.</param>
+        /// <param name="bankAccountNumber">Número de la cuenta en el banco.</param>
+        /// <param name="notifyUrl">URL por omisión para el webservice donde se notificará el pago.</param>
+        /// <param name="renditionUrl">URL para el webservice donde se notificará la rendición.</param>
         /// <returns>ReceiversCreateResponse</returns>
-        public async System.Threading.Tasks.Task<ReceiversCreateResponse> ReceiversPostAsync (string adminFirstName, string adminLastName, string adminEmail, string countryCode, string businessIdentifier, string businessCategory, string businessName, string businessPhone, string businessAddressLine1, string businessAddressLine2, string businessAddressLine3, string contactFullName, string contactJobTitle, string contactEmail, string contactPhone)
+        public async System.Threading.Tasks.Task<ReceiversCreateResponse> ReceiversPostAsync (string adminFirstName, string adminLastName, string adminEmail, string countryCode, string businessIdentifier, string businessCategory, string businessName, string businessPhone, string businessAddressLine1, string businessAddressLine2, string businessAddressLine3, string contactFullName, string contactJobTitle, string contactEmail, string contactPhone, string bankAccountBankId = null, string bankAccountIdentifier = null, string bankAccountName = null, string bankAccountNumber = null, string notifyUrl = null, string renditionUrl = null)
         {
             // verify the required parameter 'adminFirstName' is set
             if (adminFirstName == null) throw new ApiException(400, "Missing required parameter 'adminFirstName' when calling ReceiversPost");
@@ -331,6 +361,12 @@ namespace Khipu.Api
             if (contactJobTitle != null) formParams.Add("contact_job_title", ApiClient.ParameterToString(contactJobTitle)); // form parameter
             if (contactEmail != null) formParams.Add("contact_email", ApiClient.ParameterToString(contactEmail)); // form parameter
             if (contactPhone != null) formParams.Add("contact_phone", ApiClient.ParameterToString(contactPhone)); // form parameter
+            if (bankAccountBankId != null) formParams.Add("bank_account_bank_id", ApiClient.ParameterToString(bankAccountBankId)); // form parameter
+            if (bankAccountIdentifier != null) formParams.Add("bank_account_identifier", ApiClient.ParameterToString(bankAccountIdentifier)); // form parameter
+            if (bankAccountName != null) formParams.Add("bank_account_name", ApiClient.ParameterToString(bankAccountName)); // form parameter
+            if (bankAccountNumber != null) formParams.Add("bank_account_number", ApiClient.ParameterToString(bankAccountNumber)); // form parameter
+            if (notifyUrl != null) formParams.Add("notify_url", ApiClient.ParameterToString(notifyUrl)); // form parameter
+            if (renditionUrl != null) formParams.Add("rendition_url", ApiClient.ParameterToString(renditionUrl)); // form parameter
             
             
     

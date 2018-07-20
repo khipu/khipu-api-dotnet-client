@@ -61,8 +61,10 @@ namespace Khipu.Api
         /// <param name="responsibleUserEmail">Correo electrónico del responsable de este cobro, debe corresponder a un usuario khipu con permisos para cobrar usando esta cuenta de cobro</param>
         /// <param name="fixedPayerPersonalIdentifier">Identificador personal. Si se especifica, solo podrá ser pagado usando ese identificador</param>
         /// <param name="integratorFee">Comisión para el integrador. Sólo es válido si la cuenta de cobro tiene una cuenta de integrador asociada</param>
+        /// <param name="collectAccountUuid">Para cuentas de cobro con más cuenta propia. Permite elegir la cuenta donde debe ocurrir la transferencia.</param>
+        /// <param name="confirmTimeoutDate">Fecha de rendición del cobro. Es también la fecha final para poder reembolsar el cobro. Formato ISO-8601. Ej: 2017-03-01T13:00:00Z</param>
         /// <returns>PaymentsCreateResponse</returns>
-        PaymentsCreateResponse PaymentsPost (string subject, string currency, double? amount, string transactionId, string custom, string body, string bankId, string returnUrl, string cancelUrl, string pictureUrl, string notifyUrl, string contractUrl, string notifyApiVersion, DateTime? expiresDate, bool? sendEmail, string payerName, string payerEmail, bool? sendReminders, string responsibleUserEmail, string fixedPayerPersonalIdentifier, double? integratorFee);
+        PaymentsCreateResponse PaymentsPost (string subject, string currency, double? amount, string transactionId, string custom, string body, string bankId, string returnUrl, string cancelUrl, string pictureUrl, string notifyUrl, string contractUrl, string notifyApiVersion, DateTime? expiresDate, bool? sendEmail, string payerName, string payerEmail, bool? sendReminders, string responsibleUserEmail, string fixedPayerPersonalIdentifier, double? integratorFee, bool? collectAccountUuid, string confirmTimeoutDate);
   
         /// <summary>
         /// Crear un pago
@@ -91,8 +93,10 @@ namespace Khipu.Api
         /// <param name="responsibleUserEmail">Correo electrónico del responsable de este cobro, debe corresponder a un usuario khipu con permisos para cobrar usando esta cuenta de cobro</param>
         /// <param name="fixedPayerPersonalIdentifier">Identificador personal. Si se especifica, solo podrá ser pagado usando ese identificador</param>
         /// <param name="integratorFee">Comisión para el integrador. Sólo es válido si la cuenta de cobro tiene una cuenta de integrador asociada</param>
+        /// <param name="collectAccountUuid">Para cuentas de cobro con más cuenta propia. Permite elegir la cuenta donde debe ocurrir la transferencia.</param>
+        /// <param name="confirmTimeoutDate">Fecha de rendición del cobro. Es también la fecha final para poder reembolsar el cobro. Formato ISO-8601. Ej: 2017-03-01T13:00:00Z</param>
         /// <returns>PaymentsCreateResponse</returns>
-        System.Threading.Tasks.Task<PaymentsCreateResponse> PaymentsPostAsync (string subject, string currency, double? amount, string transactionId, string custom, string body, string bankId, string returnUrl, string cancelUrl, string pictureUrl, string notifyUrl, string contractUrl, string notifyApiVersion, DateTime? expiresDate, bool? sendEmail, string payerName, string payerEmail, bool? sendReminders, string responsibleUserEmail, string fixedPayerPersonalIdentifier, double? integratorFee);
+        System.Threading.Tasks.Task<PaymentsCreateResponse> PaymentsPostAsync (string subject, string currency, double? amount, string transactionId, string custom, string body, string bankId, string returnUrl, string cancelUrl, string pictureUrl, string notifyUrl, string contractUrl, string notifyApiVersion, DateTime? expiresDate, bool? sendEmail, string payerName, string payerEmail, bool? sendReminders, string responsibleUserEmail, string fixedPayerPersonalIdentifier, double? integratorFee, bool? collectAccountUuid, string confirmTimeoutDate);
         
         /// <summary>
         /// Obtener información de un pago
@@ -133,6 +137,26 @@ namespace Khipu.Api
         /// <param name="id">Identificador del pago</param>
         /// <returns>SuccessResponse</returns>
         System.Threading.Tasks.Task<SuccessResponse> PaymentsIdDeleteAsync (string id);
+        
+        /// <summary>
+        /// Confirmar el pago.
+        /// </summary>
+        /// <remarks>
+        /// Al confirmar el pago, este será rendido al día siguiente.
+        /// </remarks>
+        /// <param name="id">Identificador del pago</param>
+        /// <returns>SuccessResponse</returns>
+        SuccessResponse PaymentsIdConfirmPost (string id);
+  
+        /// <summary>
+        /// Confirmar el pago.
+        /// </summary>
+        /// <remarks>
+        /// Al confirmar el pago, este será rendido al día siguiente.
+        /// </remarks>
+        /// <param name="id">Identificador del pago</param>
+        /// <returns>SuccessResponse</returns>
+        System.Threading.Tasks.Task<SuccessResponse> PaymentsIdConfirmPostAsync (string id);
         
         /// <summary>
         /// Reembolsar total o parcialmente un pago
@@ -337,8 +361,10 @@ namespace Khipu.Api
         /// <param name="responsibleUserEmail">Correo electrónico del responsable de este cobro, debe corresponder a un usuario khipu con permisos para cobrar usando esta cuenta de cobro</param> 
         /// <param name="fixedPayerPersonalIdentifier">Identificador personal. Si se especifica, solo podrá ser pagado usando ese identificador</param> 
         /// <param name="integratorFee">Comisión para el integrador. Sólo es válido si la cuenta de cobro tiene una cuenta de integrador asociada</param> 
+        /// <param name="collectAccountUuid">Para cuentas de cobro con más cuenta propia. Permite elegir la cuenta donde debe ocurrir la transferencia.</param> 
+        /// <param name="confirmTimeoutDate">Fecha de rendición del cobro. Es también la fecha final para poder reembolsar el cobro. Formato ISO-8601. Ej: 2017-03-01T13:00:00Z</param> 
         /// <returns>PaymentsCreateResponse</returns>            
-        public PaymentsCreateResponse PaymentsPost (string subject, string currency, double? amount, string transactionId = null, string custom = null, string body = null, string bankId = null, string returnUrl = null, string cancelUrl = null, string pictureUrl = null, string notifyUrl = null, string contractUrl = null, string notifyApiVersion = null, DateTime? expiresDate = null, bool? sendEmail = null, string payerName = null, string payerEmail = null, bool? sendReminders = null, string responsibleUserEmail = null, string fixedPayerPersonalIdentifier = null, double? integratorFee = null)
+        public PaymentsCreateResponse PaymentsPost (string subject, string currency, double? amount, string transactionId = null, string custom = null, string body = null, string bankId = null, string returnUrl = null, string cancelUrl = null, string pictureUrl = null, string notifyUrl = null, string contractUrl = null, string notifyApiVersion = null, DateTime? expiresDate = null, bool? sendEmail = null, string payerName = null, string payerEmail = null, bool? sendReminders = null, string responsibleUserEmail = null, string fixedPayerPersonalIdentifier = null, double? integratorFee = null, bool? collectAccountUuid = null, string confirmTimeoutDate = null)
         {
             
             // verify the required parameter 'subject' is set
@@ -395,6 +421,8 @@ namespace Khipu.Api
             if (responsibleUserEmail != null) formParams.Add("responsible_user_email", ApiClient.ParameterToString(responsibleUserEmail)); // form parameter
             if (fixedPayerPersonalIdentifier != null) formParams.Add("fixed_payer_personal_identifier", ApiClient.ParameterToString(fixedPayerPersonalIdentifier)); // form parameter
             if (integratorFee != null) formParams.Add("integrator_fee", ApiClient.ParameterToString(integratorFee)); // form parameter
+            if (collectAccountUuid != null) formParams.Add("collect_account_uuid", ApiClient.ParameterToString(collectAccountUuid)); // form parameter
+            if (confirmTimeoutDate != null) formParams.Add("confirm_timeout_date", ApiClient.ParameterToString(confirmTimeoutDate)); // form parameter
             
             
     
@@ -436,8 +464,10 @@ namespace Khipu.Api
         /// <param name="responsibleUserEmail">Correo electrónico del responsable de este cobro, debe corresponder a un usuario khipu con permisos para cobrar usando esta cuenta de cobro</param>
         /// <param name="fixedPayerPersonalIdentifier">Identificador personal. Si se especifica, solo podrá ser pagado usando ese identificador</param>
         /// <param name="integratorFee">Comisión para el integrador. Sólo es válido si la cuenta de cobro tiene una cuenta de integrador asociada</param>
+        /// <param name="collectAccountUuid">Para cuentas de cobro con más cuenta propia. Permite elegir la cuenta donde debe ocurrir la transferencia.</param>
+        /// <param name="confirmTimeoutDate">Fecha de rendición del cobro. Es también la fecha final para poder reembolsar el cobro. Formato ISO-8601. Ej: 2017-03-01T13:00:00Z</param>
         /// <returns>PaymentsCreateResponse</returns>
-        public async System.Threading.Tasks.Task<PaymentsCreateResponse> PaymentsPostAsync (string subject, string currency, double? amount, string transactionId = null, string custom = null, string body = null, string bankId = null, string returnUrl = null, string cancelUrl = null, string pictureUrl = null, string notifyUrl = null, string contractUrl = null, string notifyApiVersion = null, DateTime? expiresDate = null, bool? sendEmail = null, string payerName = null, string payerEmail = null, bool? sendReminders = null, string responsibleUserEmail = null, string fixedPayerPersonalIdentifier = null, double? integratorFee = null)
+        public async System.Threading.Tasks.Task<PaymentsCreateResponse> PaymentsPostAsync (string subject, string currency, double? amount, string transactionId = null, string custom = null, string body = null, string bankId = null, string returnUrl = null, string cancelUrl = null, string pictureUrl = null, string notifyUrl = null, string contractUrl = null, string notifyApiVersion = null, DateTime? expiresDate = null, bool? sendEmail = null, string payerName = null, string payerEmail = null, bool? sendReminders = null, string responsibleUserEmail = null, string fixedPayerPersonalIdentifier = null, double? integratorFee = null, bool? collectAccountUuid = null, string confirmTimeoutDate = null)
         {
             // verify the required parameter 'subject' is set
             if (subject == null) throw new ApiException(400, "Missing required parameter 'subject' when calling PaymentsPost");
@@ -491,6 +521,8 @@ namespace Khipu.Api
             if (responsibleUserEmail != null) formParams.Add("responsible_user_email", ApiClient.ParameterToString(responsibleUserEmail)); // form parameter
             if (fixedPayerPersonalIdentifier != null) formParams.Add("fixed_payer_personal_identifier", ApiClient.ParameterToString(fixedPayerPersonalIdentifier)); // form parameter
             if (integratorFee != null) formParams.Add("integrator_fee", ApiClient.ParameterToString(integratorFee)); // form parameter
+            if (collectAccountUuid != null) formParams.Add("collect_account_uuid", ApiClient.ParameterToString(collectAccountUuid)); // form parameter
+            if (confirmTimeoutDate != null) formParams.Add("confirm_timeout_date", ApiClient.ParameterToString(confirmTimeoutDate)); // form parameter
             
             
     
@@ -705,6 +737,108 @@ namespace Khipu.Api
             IRestResponse response = (IRestResponse) await ApiClient.CallApiAsync(path, Method.DELETE, queryParams, postBody, headerParams, formParams, fileParams, pathParams, authSettings);
             if (((int)response.StatusCode) >= 400)
                 throw new ApiException ((int)response.StatusCode, "Error calling PaymentsIdDelete: " + response.Content, response.Content);
+
+            return (SuccessResponse) ApiClient.Deserialize(response.Content, typeof(SuccessResponse), response.Headers);
+        }
+        
+        /// <summary>
+        /// Confirmar el pago. Al confirmar el pago, este será rendido al día siguiente.
+        /// </summary>
+        /// <param name="id">Identificador del pago</param> 
+        /// <returns>SuccessResponse</returns>            
+        public SuccessResponse PaymentsIdConfirmPost (string id)
+        {
+            
+            // verify the required parameter 'id' is set
+            if (id == null) throw new ApiException(400, "Missing required parameter 'id' when calling PaymentsIdConfirmPost");
+            
+    
+            var path = "/payments/{id}/confirm";
+    
+            var pathParams = new Dictionary<String, String>();
+            var queryParams = new Dictionary<String, String>();
+            var headerParams = new Dictionary<String, String>();
+            var formParams = new Dictionary<String, String>();
+            var fileParams = new Dictionary<String, FileParameter>();
+            String postBody = null;
+
+            // to determine the Accept header
+            String[] http_header_accepts = new String[] {
+                "application/json"
+            };
+            String http_header_accept = ApiClient.SelectHeaderAccept(http_header_accepts);
+            if (http_header_accept != null)
+                headerParams.Add("Accept", ApiClient.SelectHeaderAccept(http_header_accepts));
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
+            pathParams.Add("format", "json");
+            if (id != null) pathParams.Add("id", ApiClient.ParameterToString(id)); // path parameter
+            
+            
+            
+            
+            
+    
+            // authentication setting, if any
+            String[] authSettings = new String[] { "khipu" };
+    
+            // make the HTTP request
+            IRestResponse response = (IRestResponse) ApiClient.CallApi(path, Method.POST, queryParams, postBody, headerParams, formParams, fileParams, pathParams, authSettings);
+    
+            if (((int)response.StatusCode) >= 400)
+                throw new ApiException ((int)response.StatusCode, "Error calling PaymentsIdConfirmPost: " + response.Content, response.Content);
+            else if (((int)response.StatusCode) == 0)
+                throw new ApiException ((int)response.StatusCode, "Error calling PaymentsIdConfirmPost: " + response.ErrorMessage, response.ErrorMessage);
+    
+            return (SuccessResponse) ApiClient.Deserialize(response.Content, typeof(SuccessResponse), response.Headers);
+        }
+    
+        /// <summary>
+        /// Confirmar el pago. Al confirmar el pago, este será rendido al día siguiente.
+        /// </summary>
+        /// <param name="id">Identificador del pago</param>
+        /// <returns>SuccessResponse</returns>
+        public async System.Threading.Tasks.Task<SuccessResponse> PaymentsIdConfirmPostAsync (string id)
+        {
+            // verify the required parameter 'id' is set
+            if (id == null) throw new ApiException(400, "Missing required parameter 'id' when calling PaymentsIdConfirmPost");
+            
+    
+            var path = "/payments/{id}/confirm";
+    
+            var pathParams = new Dictionary<String, String>();
+            var queryParams = new Dictionary<String, String>();
+            var headerParams = new Dictionary<String, String>();
+            var formParams = new Dictionary<String, String>();
+            var fileParams = new Dictionary<String, FileParameter>();
+            String postBody = null;
+
+            // to determine the Accept header
+            String[] http_header_accepts = new String[] {
+                "application/json"
+            };
+            String http_header_accept = ApiClient.SelectHeaderAccept(http_header_accepts);
+            if (http_header_accept != null)
+                headerParams.Add("Accept", ApiClient.SelectHeaderAccept(http_header_accepts));
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
+            pathParams.Add("format", "json");
+            if (id != null) pathParams.Add("id", ApiClient.ParameterToString(id)); // path parameter
+            
+            
+            
+            
+            
+    
+            // authentication setting, if any
+            String[] authSettings = new String[] { "khipu" };
+    
+            // make the HTTP request
+            IRestResponse response = (IRestResponse) await ApiClient.CallApiAsync(path, Method.POST, queryParams, postBody, headerParams, formParams, fileParams, pathParams, authSettings);
+            if (((int)response.StatusCode) >= 400)
+                throw new ApiException ((int)response.StatusCode, "Error calling PaymentsIdConfirmPost: " + response.Content, response.Content);
 
             return (SuccessResponse) ApiClient.Deserialize(response.Content, typeof(SuccessResponse), response.Headers);
         }

@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>KhipuApiClient</id>
-    <version>2.7.1</version>
+    <version>2.7.7</version>
     <title>A wrapper for the khipu APIs</title>
     <authors>Khipu</authors>
     <owners>Khipu</owners>
