@@ -101,7 +101,7 @@
             <param name="notificationToken">Token de notifiación recibido usando la API de notificaiones 1.3 o superior.</param>
             <returns>PaymentsResponse</returns>
         </member>
-        <member name="M:Khipu.Api.IPaymentsApi.PaymentsPost(System.String,System.String,System.Nullable{System.Double},System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.Nullable{System.DateTime},System.Nullable{System.Boolean},System.String,System.String,System.Nullable{System.Boolean},System.String,System.String,System.Nullable{System.Double})">
+        <member name="M:Khipu.Api.IPaymentsApi.PaymentsPost(System.String,System.String,System.Nullable{System.Double},System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.Nullable{System.DateTime},System.Nullable{System.Boolean},System.String,System.String,System.Nullable{System.Boolean},System.String,System.String,System.Nullable{System.Double},System.Nullable{System.Boolean},System.String)">
             <summary>
             Crear un pago
             </summary>
@@ -129,9 +129,11 @@
             <param name="responsibleUserEmail">Correo electrónico del responsable de este cobro, debe corresponder a un usuario khipu con permisos para cobrar usando esta cuenta de cobro</param>
             <param name="fixedPayerPersonalIdentifier">Identificador personal. Si se especifica, solo podrá ser pagado usando ese identificador</param>
             <param name="integratorFee">Comisión para el integrador. Sólo es válido si la cuenta de cobro tiene una cuenta de integrador asociada</param>
+            <param name="collectAccountUuid">Para cuentas de cobro con más cuenta propia. Permite elegir la cuenta donde debe ocurrir la transferencia.</param>
+            <param name="confirmTimeoutDate">Fecha de rendición del cobro. Es también la fecha final para poder reembolsar el cobro. Formato ISO-8601. Ej: 2017-03-01T13:00:00Z</param>
             <returns>PaymentsCreateResponse</returns>
         </member>
-        <member name="M:Khipu.Api.IPaymentsApi.PaymentsPostAsync(System.String,System.String,System.Nullable{System.Double},System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.Nullable{System.DateTime},System.Nullable{System.Boolean},System.String,System.String,System.Nullable{System.Boolean},System.String,System.String,System.Nullable{System.Double})">
+        <member name="M:Khipu.Api.IPaymentsApi.PaymentsPostAsync(System.String,System.String,System.Nullable{System.Double},System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.Nullable{System.DateTime},System.Nullable{System.Boolean},System.String,System.String,System.Nullable{System.Boolean},System.String,System.String,System.Nullable{System.Double},System.Nullable{System.Boolean},System.String)">
             <summary>
             Crear un pago
             </summary>
@@ -159,6 +161,8 @@
             <param name="responsibleUserEmail">Correo electrónico del responsable de este cobro, debe corresponder a un usuario khipu con permisos para cobrar usando esta cuenta de cobro</param>
             <param name="fixedPayerPersonalIdentifier">Identificador personal. Si se especifica, solo podrá ser pagado usando ese identificador</param>
             <param name="integratorFee">Comisión para el integrador. Sólo es válido si la cuenta de cobro tiene una cuenta de integrador asociada</param>
+            <param name="collectAccountUuid">Para cuentas de cobro con más cuenta propia. Permite elegir la cuenta donde debe ocurrir la transferencia.</param>
+            <param name="confirmTimeoutDate">Fecha de rendición del cobro. Es también la fecha final para poder reembolsar el cobro. Formato ISO-8601. Ej: 2017-03-01T13:00:00Z</param>
             <returns>PaymentsCreateResponse</returns>
         </member>
         <member name="M:Khipu.Api.IPaymentsApi.PaymentsIdGet(System.String)">
@@ -197,6 +201,26 @@
             </summary>
             <remarks>
             Solo se pueden borrar pagos que estén pendientes de pagar. Esta operación no puede deshacerse.
+            </remarks>
+            <param name="id">Identificador del pago</param>
+            <returns>SuccessResponse</returns>
+        </member>
+        <member name="M:Khipu.Api.IPaymentsApi.PaymentsIdConfirmPost(System.String)">
+            <summary>
+            Confirmar el pago.
+            </summary>
+            <remarks>
+            Al confirmar el pago, este será rendido al día siguiente.
+            </remarks>
+            <param name="id">Identificador del pago</param>
+            <returns>SuccessResponse</returns>
+        </member>
+        <member name="M:Khipu.Api.IPaymentsApi.PaymentsIdConfirmPostAsync(System.String)">
+            <summary>
+            Confirmar el pago.
+            </summary>
+            <remarks>
+            Al confirmar el pago, este será rendido al día siguiente.
             </remarks>
             <param name="id">Identificador del pago</param>
             <returns>SuccessResponse</returns>
@@ -268,7 +292,7 @@
             <param name="notificationToken">Token de notifiación recibido usando la API de notificaiones 1.3 o superior.</param>
             <returns>PaymentsResponse</returns>
         </member>
-        <member name="M:Khipu.Api.PaymentsApi.PaymentsPost(System.String,System.String,System.Nullable{System.Double},System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.Nullable{System.DateTime},System.Nullable{System.Boolean},System.String,System.String,System.Nullable{System.Boolean},System.String,System.String,System.Nullable{System.Double})">
+        <member name="M:Khipu.Api.PaymentsApi.PaymentsPost(System.String,System.String,System.Nullable{System.Double},System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.Nullable{System.DateTime},System.Nullable{System.Boolean},System.String,System.String,System.Nullable{System.Boolean},System.String,System.String,System.Nullable{System.Double},System.Nullable{System.Boolean},System.String)">
             <summary>
             Crear un pago Crea un pago en khipu y obtiene las URLs para redirección al usuario para que complete el pago.
             </summary>
@@ -293,9 +317,11 @@
             <param name="responsibleUserEmail">Correo electrónico del responsable de este cobro, debe corresponder a un usuario khipu con permisos para cobrar usando esta cuenta de cobro</param> 
             <param name="fixedPayerPersonalIdentifier">Identificador personal. Si se especifica, solo podrá ser pagado usando ese identificador</param> 
             <param name="integratorFee">Comisión para el integrador. Sólo es válido si la cuenta de cobro tiene una cuenta de integrador asociada</param> 
+            <param name="collectAccountUuid">Para cuentas de cobro con más cuenta propia. Permite elegir la cuenta donde debe ocurrir la transferencia.</param> 
+            <param name="confirmTimeoutDate">Fecha de rendición del cobro. Es también la fecha final para poder reembolsar el cobro. Formato ISO-8601. Ej: 2017-03-01T13:00:00Z</param> 
             <returns>PaymentsCreateResponse</returns>            
         </member>
-        <member name="M:Khipu.Api.PaymentsApi.PaymentsPostAsync(System.String,System.String,System.Nullable{System.Double},System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.Nullable{System.DateTime},System.Nullable{System.Boolean},System.String,System.String,System.Nullable{System.Boolean},System.String,System.String,System.Nullable{System.Double})">
+        <member name="M:Khipu.Api.PaymentsApi.PaymentsPostAsync(System.String,System.String,System.Nullable{System.Double},System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.Nullable{System.DateTime},System.Nullable{System.Boolean},System.String,System.String,System.Nullable{System.Boolean},System.String,System.String,System.Nullable{System.Double},System.Nullable{System.Boolean},System.String)">
             <summary>
             Crear un pago Crea un pago en khipu y obtiene las URLs para redirección al usuario para que complete el pago.
             </summary>
@@ -320,6 +346,8 @@
             <param name="responsibleUserEmail">Correo electrónico del responsable de este cobro, debe corresponder a un usuario khipu con permisos para cobrar usando esta cuenta de cobro</param>
             <param name="fixedPayerPersonalIdentifier">Identificador personal. Si se especifica, solo podrá ser pagado usando ese identificador</param>
             <param name="integratorFee">Comisión para el integrador. Sólo es válido si la cuenta de cobro tiene una cuenta de integrador asociada</param>
+            <param name="collectAccountUuid">Para cuentas de cobro con más cuenta propia. Permite elegir la cuenta donde debe ocurrir la transferencia.</param>
+            <param name="confirmTimeoutDate">Fecha de rendición del cobro. Es también la fecha final para poder reembolsar el cobro. Formato ISO-8601. Ej: 2017-03-01T13:00:00Z</param>
             <returns>PaymentsCreateResponse</returns>
         </member>
         <member name="M:Khipu.Api.PaymentsApi.PaymentsIdGet(System.String)">
@@ -346,6 +374,20 @@
         <member name="M:Khipu.Api.PaymentsApi.PaymentsIdDeleteAsync(System.String)">
             <summary>
             Borrar un pago Solo se pueden borrar pagos que estén pendientes de pagar. Esta operación no puede deshacerse.
+            </summary>
+            <param name="id">Identificador del pago</param>
+            <returns>SuccessResponse</returns>
+        </member>
+        <member name="M:Khipu.Api.PaymentsApi.PaymentsIdConfirmPost(System.String)">
+            <summary>
+            Confirmar el pago. Al confirmar el pago, este será rendido al día siguiente.
+            </summary>
+            <param name="id">Identificador del pago</param> 
+            <returns>SuccessResponse</returns>            
+        </member>
+        <member name="M:Khipu.Api.PaymentsApi.PaymentsIdConfirmPostAsync(System.String)">
+            <summary>
+            Confirmar el pago. Al confirmar el pago, este será rendido al día siguiente.
             </summary>
             <param name="id">Identificador del pago</param>
             <returns>SuccessResponse</returns>
@@ -377,7 +419,7 @@
             Represents a collection of functions to interact with the API endpoints
             </summary>
         </member>
-        <member name="M:Khipu.Api.IReceiversApi.ReceiversPost(System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String)">
+        <member name="M:Khipu.Api.IReceiversApi.ReceiversPost(System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String)">
             <summary>
             Crear una nueva cuenta de cobro
             </summary>
@@ -399,9 +441,15 @@
             <param name="contactJobTitle">Cargo del contacto del cobrador.</param>
             <param name="contactEmail">Correo electrónico del contacto del cobrador.</param>
             <param name="contactPhone">Teléfono del contacto del cobrador.</param>
+            <param name="bankAccountBankId">Identificador del banco.</param>
+            <param name="bankAccountIdentifier">Identificador personal del dueño de la cuenta de banco.</param>
+            <param name="bankAccountName">Nombre de la cuenta de banco.</param>
+            <param name="bankAccountNumber">Número de la cuenta en el banco.</param>
+            <param name="notifyUrl">URL por omisión para el webservice donde se notificará el pago.</param>
+            <param name="renditionUrl">URL para el webservice donde se notificará la rendición.</param>
             <returns>ReceiversCreateResponse</returns>
         </member>
-        <member name="M:Khipu.Api.IReceiversApi.ReceiversPostAsync(System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String)">
+        <member name="M:Khipu.Api.IReceiversApi.ReceiversPostAsync(System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String)">
             <summary>
             Crear una nueva cuenta de cobro
             </summary>
@@ -423,6 +471,12 @@
             <param name="contactJobTitle">Cargo del contacto del cobrador.</param>
             <param name="contactEmail">Correo electrónico del contacto del cobrador.</param>
             <param name="contactPhone">Teléfono del contacto del cobrador.</param>
+            <param name="bankAccountBankId">Identificador del banco.</param>
+            <param name="bankAccountIdentifier">Identificador personal del dueño de la cuenta de banco.</param>
+            <param name="bankAccountName">Nombre de la cuenta de banco.</param>
+            <param name="bankAccountNumber">Número de la cuenta en el banco.</param>
+            <param name="notifyUrl">URL por omisión para el webservice donde se notificará el pago.</param>
+            <param name="renditionUrl">URL para el webservice donde se notificará la rendición.</param>
             <returns>ReceiversCreateResponse</returns>
         </member>
         <member name="T:Khipu.Api.ReceiversApi">
@@ -456,7 +510,7 @@
             </summary>
             <value>The base path</value>
         </member>
-        <member name="M:Khipu.Api.ReceiversApi.ReceiversPost(System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String)">
+        <member name="M:Khipu.Api.ReceiversApi.ReceiversPost(System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String)">
             <summary>
             Crear una nueva cuenta de cobro Crear una nueva cuenta de cobro asociada a un integrador. Necesita datos de la cuenta de usuario asociada, datos de facturación y datos de contacto.
             </summary>
@@ -475,9 +529,15 @@
             <param name="contactJobTitle">Cargo del contacto del cobrador.</param> 
             <param name="contactEmail">Correo electrónico del contacto del cobrador.</param> 
             <param name="contactPhone">Teléfono del contacto del cobrador.</param> 
+            <param name="bankAccountBankId">Identificador del banco.</param> 
+            <param name="bankAccountIdentifier">Identificador personal del dueño de la cuenta de banco.</param> 
+            <param name="bankAccountName">Nombre de la cuenta de banco.</param> 
+            <param name="bankAccountNumber">Número de la cuenta en el banco.</param> 
+            <param name="notifyUrl">URL por omisión para el webservice donde se notificará el pago.</param> 
+            <param name="renditionUrl">URL para el webservice donde se notificará la rendición.</param> 
             <returns>ReceiversCreateResponse</returns>            
         </member>
-        <member name="M:Khipu.Api.ReceiversApi.ReceiversPostAsync(System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String)">
+        <member name="M:Khipu.Api.ReceiversApi.ReceiversPostAsync(System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String)">
             <summary>
             Crear una nueva cuenta de cobro Crear una nueva cuenta de cobro asociada a un integrador. Necesita datos de la cuenta de usuario asociada, datos de facturación y datos de contacto.
             </summary>
@@ -496,6 +556,12 @@
             <param name="contactJobTitle">Cargo del contacto del cobrador.</param>
             <param name="contactEmail">Correo electrónico del contacto del cobrador.</param>
             <param name="contactPhone">Teléfono del contacto del cobrador.</param>
+            <param name="bankAccountBankId">Identificador del banco.</param>
+            <param name="bankAccountIdentifier">Identificador personal del dueño de la cuenta de banco.</param>
+            <param name="bankAccountName">Nombre de la cuenta de banco.</param>
+            <param name="bankAccountNumber">Número de la cuenta en el banco.</param>
+            <param name="notifyUrl">URL por omisión para el webservice donde se notificará el pago.</param>
+            <param name="renditionUrl">URL para el webservice donde se notificará la rendición.</param>
             <returns>ReceiversCreateResponse</returns>
         </member>
         <member name="P:Khipu.Api.ReceiversApi.ApiClient">
@@ -884,53 +950,6 @@
             Gets or Sets Banks
             </summary>
         </member>
-        <member name="T:Khipu.Model.CreateResponse">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="M:Khipu.Model.CreateResponse.ToString">
-            <summary>
-            Get the string presentation of the object
-            </summary>
-            <returns>String presentation of the object</returns>
-        </member>
-        <member name="M:Khipu.Model.CreateResponse.ToJson">
-            <summary>
-            Get the JSON string presentation of the object
-            </summary>
-            <returns>JSON string presentation of the object</returns>
-        </member>
-        <member name="P:Khipu.Model.CreateResponse.PaymentId">
-            <summary>
-            Gets or Sets PaymentId
-            </summary>
-        </member>
-        <member name="P:Khipu.Model.CreateResponse.PaymentUrl">
-            <summary>
-            Gets or Sets PaymentUrl
-            </summary>
-        </member>
-        <member name="P:Khipu.Model.CreateResponse.SimplifiedTransferUrl">
-            <summary>
-            Gets or Sets SimplifiedTransferUrl
-            </summary>
-        </member>
-        <member name="P:Khipu.Model.CreateResponse.TransferUrl">
-            <summary>
-            Gets or Sets TransferUrl
-            </summary>
-        </member>
-        <member name="P:Khipu.Model.CreateResponse.AppUrl">
-            <summary>
-            Gets or Sets AppUrl
-            </summary>
-        </member>
-        <member name="P:Khipu.Model.CreateResponse.ReadyForTerminal">
-            <summary>
-            Gets or Sets ReadyForTerminal
-            </summary>
-        </member>
         <member name="T:Khipu.Model.ErrorItem">
             <summary>
             
@@ -959,183 +978,6 @@
             Motivo del error de validación
             </summary>
             <value>Motivo del error de validación</value>
-        </member>
-        <member name="T:Khipu.Model.PaymentResponse">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="M:Khipu.Model.PaymentResponse.ToString">
-            <summary>
-            Get the string presentation of the object
-            </summary>
-            <returns>String presentation of the object</returns>
-        </member>
-        <member name="M:Khipu.Model.PaymentResponse.ToJson">
-            <summary>
-            Get the JSON string presentation of the object
-            </summary>
-            <returns>JSON string presentation of the object</returns>
-        </member>
-        <member name="P:Khipu.Model.PaymentResponse.PaymentId">
-            <summary>
-            Gets or Sets PaymentId
-            </summary>
-        </member>
-        <member name="P:Khipu.Model.PaymentResponse.PaymentUrl">
-            <summary>
-            Gets or Sets PaymentUrl
-            </summary>
-        </member>
-        <member name="P:Khipu.Model.PaymentResponse.SimplifiedTransferUrl">
-            <summary>
-            Gets or Sets SimplifiedTransferUrl
-            </summary>
-        </member>
-        <member name="P:Khipu.Model.PaymentResponse.TransferUrl">
-            <summary>
-            Gets or Sets TransferUrl
-            </summary>
-        </member>
-        <member name="P:Khipu.Model.PaymentResponse.AppUrl">
-            <summary>
-            Gets or Sets AppUrl
-            </summary>
-        </member>
-        <member name="P:Khipu.Model.PaymentResponse.ReadyForTerminal">
-            <summary>
-            Gets or Sets ReadyForTerminal
-            </summary>
-        </member>
-        <member name="P:Khipu.Model.PaymentResponse.Subject">
-            <summary>
-            Gets or Sets Subject
-            </summary>
-        </member>
-        <member name="P:Khipu.Model.PaymentResponse.Amount">
-            <summary>
-            Gets or Sets Amount
-            </summary>
-        </member>
-        <member name="P:Khipu.Model.PaymentResponse.Currency">
-            <summary>
-            Gets or Sets Currency
-            </summary>
-        </member>
-        <member name="P:Khipu.Model.PaymentResponse.Status">
-            <summary>
-            Gets or Sets Status
-            </summary>
-        </member>
-        <member name="P:Khipu.Model.PaymentResponse.StatusDetail">
-            <summary>
-            Gets or Sets StatusDetail
-            </summary>
-        </member>
-        <member name="P:Khipu.Model.PaymentResponse.Body">
-            <summary>
-            Gets or Sets Body
-            </summary>
-        </member>
-        <member name="P:Khipu.Model.PaymentResponse.PictureUrl">
-            <summary>
-            Gets or Sets PictureUrl
-            </summary>
-        </member>
-        <member name="P:Khipu.Model.PaymentResponse.ReceiptUrl">
-            <summary>
-            Gets or Sets ReceiptUrl
-            </summary>
-        </member>
-        <member name="P:Khipu.Model.PaymentResponse.ReturnUrl">
-            <summary>
-            Gets or Sets ReturnUrl
-            </summary>
-        </member>
-        <member name="P:Khipu.Model.PaymentResponse.CancelUrl">
-            <summary>
-            Gets or Sets CancelUrl
-            </summary>
-        </member>
-        <member name="P:Khipu.Model.PaymentResponse.NotifyUrl">
-            <summary>
-            Gets or Sets NotifyUrl
-            </summary>
-        </member>
-        <member name="P:Khipu.Model.PaymentResponse.NotifyApiVersion">
-            <summary>
-            Gets or Sets NotifyApiVersion
-            </summary>
-        </member>
-        <member name="P:Khipu.Model.PaymentResponse.ExpiresDate">
-            <summary>
-            Gets or Sets ExpiresDate
-            </summary>
-        </member>
-        <member name="P:Khipu.Model.PaymentResponse.AttachmentUrls">
-            <summary>
-            Gets or Sets AttachmentUrls
-            </summary>
-        </member>
-        <member name="P:Khipu.Model.PaymentResponse.Bank">
-            <summary>
-            Gets or Sets Bank
-            </summary>
-        </member>
-        <member name="P:Khipu.Model.PaymentResponse.BankId">
-            <summary>
-            Gets or Sets BankId
-            </summary>
-        </member>
-        <member name="P:Khipu.Model.PaymentResponse.PayerName">
-            <summary>
-            Gets or Sets PayerName
-            </summary>
-        </member>
-        <member name="P:Khipu.Model.PaymentResponse.PayerEmail">
-            <summary>
-            Gets or Sets PayerEmail
-            </summary>
-        </member>
-        <member name="P:Khipu.Model.PaymentResponse.PersonalIdentifier">
-            <summary>
-            Gets or Sets PersonalIdentifier
-            </summary>
-        </member>
-        <member name="P:Khipu.Model.PaymentResponse.BankAccountNumber">
-            <summary>
-            Gets or Sets BankAccountNumber
-            </summary>
-        </member>
-        <member name="P:Khipu.Model.PaymentResponse.OutOfDateConciliation">
-            <summary>
-            Gets or Sets OutOfDateConciliation
-            </summary>
-        </member>
-        <member name="P:Khipu.Model.PaymentResponse.TransactionId">
-            <summary>
-            Gets or Sets TransactionId
-            </summary>
-        </member>
-        <member name="P:Khipu.Model.PaymentResponse.Custom">
-            <summary>
-            Gets or Sets Custom
-            </summary>
-        </member>
-        <member name="P:Khipu.Model.PaymentResponse.ResponsibleUserEmail">
-            <summary>
-            Gets or Sets ResponsibleUserEmail
-            </summary>
-        </member>
-        <member name="P:Khipu.Model.PaymentResponse.SendReminders">
-            <summary>
-            Gets or Sets SendReminders
-            </summary>
-        </member>
-        <member name="P:Khipu.Model.PaymentResponse.SendEmail">
-            <summary>
-            Gets or Sets SendEmail
-            </summary>
         </member>
         <member name="T:Khipu.Model.PaymentsCreateResponse">
             <summary>
