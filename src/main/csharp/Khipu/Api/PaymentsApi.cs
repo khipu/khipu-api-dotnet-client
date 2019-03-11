@@ -63,8 +63,9 @@ namespace Khipu.Api
         /// <param name="integratorFee">Comisión para el integrador. Sólo es válido si la cuenta de cobro tiene una cuenta de integrador asociada</param>
         /// <param name="collectAccountUuid">Para cuentas de cobro con más cuenta propia. Permite elegir la cuenta donde debe ocurrir la transferencia.</param>
         /// <param name="confirmTimeoutDate">Fecha de rendición del cobro. Es también la fecha final para poder reembolsar el cobro. Formato ISO-8601. Ej: 2017-03-01T13:00:00Z</param>
+        /// <param name="mandatoryPaymentMethod">Si se especifica, el cobro sólo se podrá pagar utilizando ese medio de pago. El valor para el campo de obtiene consultando el endpoint &#39;Consulta medios de pago disponibles&#39;.</param>
         /// <returns>PaymentsCreateResponse</returns>
-        PaymentsCreateResponse PaymentsPost (string subject, string currency, double? amount, string transactionId, string custom, string body, string bankId, string returnUrl, string cancelUrl, string pictureUrl, string notifyUrl, string contractUrl, string notifyApiVersion, DateTime? expiresDate, bool? sendEmail, string payerName, string payerEmail, bool? sendReminders, string responsibleUserEmail, string fixedPayerPersonalIdentifier, double? integratorFee, bool? collectAccountUuid, string confirmTimeoutDate);
+        PaymentsCreateResponse PaymentsPost (string subject, string currency, double? amount, string transactionId, string custom, string body, string bankId, string returnUrl, string cancelUrl, string pictureUrl, string notifyUrl, string contractUrl, string notifyApiVersion, DateTime? expiresDate, bool? sendEmail, string payerName, string payerEmail, bool? sendReminders, string responsibleUserEmail, string fixedPayerPersonalIdentifier, double? integratorFee, bool? collectAccountUuid, string confirmTimeoutDate, string mandatoryPaymentMethod);
   
         /// <summary>
         /// Crear un pago
@@ -95,8 +96,9 @@ namespace Khipu.Api
         /// <param name="integratorFee">Comisión para el integrador. Sólo es válido si la cuenta de cobro tiene una cuenta de integrador asociada</param>
         /// <param name="collectAccountUuid">Para cuentas de cobro con más cuenta propia. Permite elegir la cuenta donde debe ocurrir la transferencia.</param>
         /// <param name="confirmTimeoutDate">Fecha de rendición del cobro. Es también la fecha final para poder reembolsar el cobro. Formato ISO-8601. Ej: 2017-03-01T13:00:00Z</param>
+        /// <param name="mandatoryPaymentMethod">Si se especifica, el cobro sólo se podrá pagar utilizando ese medio de pago. El valor para el campo de obtiene consultando el endpoint &#39;Consulta medios de pago disponibles&#39;.</param>
         /// <returns>PaymentsCreateResponse</returns>
-        System.Threading.Tasks.Task<PaymentsCreateResponse> PaymentsPostAsync (string subject, string currency, double? amount, string transactionId, string custom, string body, string bankId, string returnUrl, string cancelUrl, string pictureUrl, string notifyUrl, string contractUrl, string notifyApiVersion, DateTime? expiresDate, bool? sendEmail, string payerName, string payerEmail, bool? sendReminders, string responsibleUserEmail, string fixedPayerPersonalIdentifier, double? integratorFee, bool? collectAccountUuid, string confirmTimeoutDate);
+        System.Threading.Tasks.Task<PaymentsCreateResponse> PaymentsPostAsync (string subject, string currency, double? amount, string transactionId, string custom, string body, string bankId, string returnUrl, string cancelUrl, string pictureUrl, string notifyUrl, string contractUrl, string notifyApiVersion, DateTime? expiresDate, bool? sendEmail, string payerName, string payerEmail, bool? sendReminders, string responsibleUserEmail, string fixedPayerPersonalIdentifier, double? integratorFee, bool? collectAccountUuid, string confirmTimeoutDate, string mandatoryPaymentMethod);
         
         /// <summary>
         /// Obtener información de un pago
@@ -363,8 +365,9 @@ namespace Khipu.Api
         /// <param name="integratorFee">Comisión para el integrador. Sólo es válido si la cuenta de cobro tiene una cuenta de integrador asociada</param> 
         /// <param name="collectAccountUuid">Para cuentas de cobro con más cuenta propia. Permite elegir la cuenta donde debe ocurrir la transferencia.</param> 
         /// <param name="confirmTimeoutDate">Fecha de rendición del cobro. Es también la fecha final para poder reembolsar el cobro. Formato ISO-8601. Ej: 2017-03-01T13:00:00Z</param> 
+        /// <param name="mandatoryPaymentMethod">Si se especifica, el cobro sólo se podrá pagar utilizando ese medio de pago. El valor para el campo de obtiene consultando el endpoint &#39;Consulta medios de pago disponibles&#39;.</param> 
         /// <returns>PaymentsCreateResponse</returns>            
-        public PaymentsCreateResponse PaymentsPost (string subject, string currency, double? amount, string transactionId = null, string custom = null, string body = null, string bankId = null, string returnUrl = null, string cancelUrl = null, string pictureUrl = null, string notifyUrl = null, string contractUrl = null, string notifyApiVersion = null, DateTime? expiresDate = null, bool? sendEmail = null, string payerName = null, string payerEmail = null, bool? sendReminders = null, string responsibleUserEmail = null, string fixedPayerPersonalIdentifier = null, double? integratorFee = null, bool? collectAccountUuid = null, string confirmTimeoutDate = null)
+        public PaymentsCreateResponse PaymentsPost (string subject, string currency, double? amount, string transactionId = null, string custom = null, string body = null, string bankId = null, string returnUrl = null, string cancelUrl = null, string pictureUrl = null, string notifyUrl = null, string contractUrl = null, string notifyApiVersion = null, DateTime? expiresDate = null, bool? sendEmail = null, string payerName = null, string payerEmail = null, bool? sendReminders = null, string responsibleUserEmail = null, string fixedPayerPersonalIdentifier = null, double? integratorFee = null, bool? collectAccountUuid = null, string confirmTimeoutDate = null, string mandatoryPaymentMethod = null)
         {
             
             // verify the required parameter 'subject' is set
@@ -423,6 +426,7 @@ namespace Khipu.Api
             if (integratorFee != null) formParams.Add("integrator_fee", ApiClient.ParameterToString(integratorFee)); // form parameter
             if (collectAccountUuid != null) formParams.Add("collect_account_uuid", ApiClient.ParameterToString(collectAccountUuid)); // form parameter
             if (confirmTimeoutDate != null) formParams.Add("confirm_timeout_date", ApiClient.ParameterToString(confirmTimeoutDate)); // form parameter
+            if (mandatoryPaymentMethod != null) formParams.Add("mandatory_payment_method", ApiClient.ParameterToString(mandatoryPaymentMethod)); // form parameter
             
             
     
@@ -466,8 +470,9 @@ namespace Khipu.Api
         /// <param name="integratorFee">Comisión para el integrador. Sólo es válido si la cuenta de cobro tiene una cuenta de integrador asociada</param>
         /// <param name="collectAccountUuid">Para cuentas de cobro con más cuenta propia. Permite elegir la cuenta donde debe ocurrir la transferencia.</param>
         /// <param name="confirmTimeoutDate">Fecha de rendición del cobro. Es también la fecha final para poder reembolsar el cobro. Formato ISO-8601. Ej: 2017-03-01T13:00:00Z</param>
+        /// <param name="mandatoryPaymentMethod">Si se especifica, el cobro sólo se podrá pagar utilizando ese medio de pago. El valor para el campo de obtiene consultando el endpoint &#39;Consulta medios de pago disponibles&#39;.</param>
         /// <returns>PaymentsCreateResponse</returns>
-        public async System.Threading.Tasks.Task<PaymentsCreateResponse> PaymentsPostAsync (string subject, string currency, double? amount, string transactionId = null, string custom = null, string body = null, string bankId = null, string returnUrl = null, string cancelUrl = null, string pictureUrl = null, string notifyUrl = null, string contractUrl = null, string notifyApiVersion = null, DateTime? expiresDate = null, bool? sendEmail = null, string payerName = null, string payerEmail = null, bool? sendReminders = null, string responsibleUserEmail = null, string fixedPayerPersonalIdentifier = null, double? integratorFee = null, bool? collectAccountUuid = null, string confirmTimeoutDate = null)
+        public async System.Threading.Tasks.Task<PaymentsCreateResponse> PaymentsPostAsync (string subject, string currency, double? amount, string transactionId = null, string custom = null, string body = null, string bankId = null, string returnUrl = null, string cancelUrl = null, string pictureUrl = null, string notifyUrl = null, string contractUrl = null, string notifyApiVersion = null, DateTime? expiresDate = null, bool? sendEmail = null, string payerName = null, string payerEmail = null, bool? sendReminders = null, string responsibleUserEmail = null, string fixedPayerPersonalIdentifier = null, double? integratorFee = null, bool? collectAccountUuid = null, string confirmTimeoutDate = null, string mandatoryPaymentMethod = null)
         {
             // verify the required parameter 'subject' is set
             if (subject == null) throw new ApiException(400, "Missing required parameter 'subject' when calling PaymentsPost");
@@ -523,6 +528,7 @@ namespace Khipu.Api
             if (integratorFee != null) formParams.Add("integrator_fee", ApiClient.ParameterToString(integratorFee)); // form parameter
             if (collectAccountUuid != null) formParams.Add("collect_account_uuid", ApiClient.ParameterToString(collectAccountUuid)); // form parameter
             if (confirmTimeoutDate != null) formParams.Add("confirm_timeout_date", ApiClient.ParameterToString(confirmTimeoutDate)); // form parameter
+            if (mandatoryPaymentMethod != null) formParams.Add("mandatory_payment_method", ApiClient.ParameterToString(mandatoryPaymentMethod)); // form parameter
             
             
     

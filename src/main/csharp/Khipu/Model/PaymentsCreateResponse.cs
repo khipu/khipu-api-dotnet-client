@@ -46,6 +46,30 @@ namespace Khipu.Model {
 
     
     /// <summary>
+    /// URL de pago usando Webpay
+    /// </summary>
+    /// <value>URL de pago usando Webpay</value>
+    [DataMember(Name="webpay_url", EmitDefaultValue=false)]
+    public string WebpayUrl { get; set; }
+
+    
+    /// <summary>
+    /// URL de pago usando Hites
+    /// </summary>
+    /// <value>URL de pago usando Hites</value>
+    [DataMember(Name="hites_url", EmitDefaultValue=false)]
+    public string HitesUrl { get; set; }
+
+    
+    /// <summary>
+    /// URL de pago usando Hites
+    /// </summary>
+    /// <value>URL de pago usando Hites</value>
+    [DataMember(Name="payme_url", EmitDefaultValue=false)]
+    public string PaymeUrl { get; set; }
+
+    
+    /// <summary>
     /// URL para invocar el pago desde un dispositivo móvil usando la APP de khipu
     /// </summary>
     /// <value>URL para invocar el pago desde un dispositivo móvil usando la APP de khipu</value>
@@ -77,6 +101,12 @@ namespace Khipu.Model {
       sb.Append("  SimplifiedTransferUrl: ").Append(SimplifiedTransferUrl).Append("\n");
       
       sb.Append("  TransferUrl: ").Append(TransferUrl).Append("\n");
+      
+      sb.Append("  WebpayUrl: ").Append(WebpayUrl).Append("\n");
+      
+      sb.Append("  HitesUrl: ").Append(HitesUrl).Append("\n");
+      
+      sb.Append("  PaymeUrl: ").Append(PaymeUrl).Append("\n");
       
       sb.Append("  AppUrl: ").Append(AppUrl).Append("\n");
       

@@ -15,6 +15,7 @@ using System.Security.Cryptography;
 
 namespace Khipu.Client
 {
+
     /// <summary>
     /// API client is mainly responible for making the HTTP call to the API backend.
     /// </summary>
@@ -74,7 +75,7 @@ namespace Khipu.Client
             foreach(var v in pathParams)
                 epath = epath.Replace("{" + v.Key + "}", v.Value);
    
-            UpdateParamsForAuth(epath, method, queryParams, headerParams, formParams, authSettings);
+            UpdateParamsForAuth(epath, method, queryParams, headerParams, formParams, authSettings, postBody);
 
             // add default header, if any
             foreach(var defaultHeader in _defaultHeaderMap)
@@ -279,7 +280,7 @@ namespace Khipu.Client
         {
             try
             {
-                return obj != null ? JsonConvert.SerializeObject(obj) : null;
+                return obj != null ? JsonConvert.SerializeObject(obj, Formatting.None, new CanonicalJsonConverter()) : null;
             }
             catch (Exception e)
             {
@@ -322,7 +323,8 @@ namespace Khipu.Client
         /// <param name="method">Request method.</param>
         /// <param name="queryParams">Query parameters.</param>
         /// <param name="formParams">Form parameters.</param>
-        public String AuthHeader(String path, RestSharp.Method method, Dictionary<String, String> queryParams, Dictionary<String, String> formParams) {
+        /// <param name="postBody">HTTP body (POST request).</param>
+        public String AuthHeader(String path, RestSharp.Method method, Dictionary<String, String> queryParams, Dictionary<String, String> formParams, String postBody) {
             Dictionary<String, String> ps = new Dictionary<String, String>();
             queryParams.ToList().ForEach(x => ps[x.Key] = x.Value);
             formParams.ToList().ForEach(x => ps[x.Key] = x.Value);
@@ -332,7 +334,9 @@ namespace Khipu.Client
 
             foreach(var key in keys)
                 toSign += "&" + Uri.EscapeDataString(key) + "=" + Uri.EscapeDataString(ps[key]);
-
+            if (postBody != null ){
+                toSign += "&"+postBody;
+            }
             String hmac = HmacSha256(Configuration.Secret, toSign);
             return Configuration.ReceiverId + ":" + hmac;
         }
@@ -346,7 +350,8 @@ namespace Khipu.Client
         /// <param name="headerParams">Header parameters.</param>
         /// <param name="formParams">Form parameters.</param>
         /// <param name="authSettings">Authentication settings.</param>
-        public void UpdateParamsForAuth(String path, RestSharp.Method method, Dictionary<String, String> queryParams, Dictionary<String, String> headerParams, Dictionary<String, String> formParams, string[] authSettings)
+        /// <param name="postBody">HTTP body (POST request).</param>
+        public void UpdateParamsForAuth(String path, RestSharp.Method method, Dictionary<String, String> queryParams, Dictionary<String, String> headerParams, Dictionary<String, String> formParams, string[] authSettings, String postBody)
         {
             if (authSettings == null || authSettings.Length == 0)
                 return;
@@ -360,7 +365,7 @@ namespace Khipu.Client
                     case "khipu":
                         
                         
-                        headerParams["Authorization"] = AuthHeader(path, method, queryParams, formParams);
+                        headerParams["Authorization"] = AuthHeader(path, method, queryParams, formParams, postBody);
                         break;
                     
                     default:
