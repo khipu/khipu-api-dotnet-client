@@ -325,6 +325,14 @@ namespace Khipu.Model {
     public string PaymentMethod { get; set; }
 
     
+    /// <summary>
+    /// Origen de fondos usado por el pagador, puede ser 'debit' para pago con débito, 'prepaid' para pago con prepago, 'credit' para pago con crédito o vacío en el caso de que se haya pagado mediante transferencia bancaria.
+    /// </summary>
+    /// <value>Origen de fondos usado por el pagador, puede ser 'debit' para pago con débito, 'prepaid' para pago con prepago, 'credit' para pago con crédito o vacío en el caso de que se haya pagado mediante transferencia bancaria.</value>
+    [DataMember(Name="funds_source", EmitDefaultValue=false)]
+    public string FundsSource { get; set; }
+
+    
 
     /// <summary>
     /// Get the string presentation of the object
@@ -411,6 +419,8 @@ namespace Khipu.Model {
       sb.Append("  SendEmail: ").Append(SendEmail).Append("\n");
       
       sb.Append("  PaymentMethod: ").Append(PaymentMethod).Append("\n");
+      
+      sb.Append("  FundsSource: ").Append(FundsSource).Append("\n");
       
       sb.Append("}\n");
       return sb.ToString();
