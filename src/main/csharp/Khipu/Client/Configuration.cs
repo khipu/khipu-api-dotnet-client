@@ -17,7 +17,7 @@ namespace Khipu.Client
         /// Version of the package.
         /// </summary>
         /// <value>Version of the package.</value>
-        public const string Version = "2.9.1";
+        public const string Version = "";
   
         /// <summary>
         /// Gets or sets the default API client for making HTTP calls.
@@ -103,7 +103,7 @@ namespace Khipu.Client
                      .GetReferencedAssemblies()
                      .Where(x => x.Name == "System.Core").First().Version.ToString()  + "\n";
             report += "    Version of the API: 2.9.1\n";
-            report += "    SDK Package Version: 2.9.1\n";
+            report += "    SDK Package Version: \n";
   
             return report;
         }

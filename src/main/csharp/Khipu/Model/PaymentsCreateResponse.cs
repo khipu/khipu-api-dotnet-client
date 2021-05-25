@@ -14,9 +14,9 @@ namespace Khipu.Model {
   public class PaymentsCreateResponse {
     
     /// <summary>
-    /// Identificador único del pago, es una cadena alfanumérica de 12 caracteres
+    /// Identificador único del pago, es una cadena alfanumérica de 12 caracteres. Cómo este identificador es único, se puede usar, por ejemplo, para evitar procesar una notificación repetida. (Khipu espera un código 200 al notificar un pago, si esto no ocurre se reintenta hasta por dos días).
     /// </summary>
-    /// <value>Identificador único del pago, es una cadena alfanumérica de 12 caracteres</value>
+    /// <value>Identificador único del pago, es una cadena alfanumérica de 12 caracteres. Cómo este identificador es único, se puede usar, por ejemplo, para evitar procesar una notificación repetida. (Khipu espera un código 200 al notificar un pago, si esto no ocurre se reintenta hasta por dos días).</value>
     [DataMember(Name="payment_id", EmitDefaultValue=false)]
     public string PaymentId { get; set; }
 
