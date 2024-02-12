@@ -125,7 +125,7 @@ namespace Khipu.Api
             String[] authSettings = new String[] { "khipu" };
     
             // make the HTTP request
-            IRestResponse response = (IRestResponse) ApiClient.CallApi(path, Method.GET, queryParams, postBody, headerParams, formParams, fileParams, pathParams, authSettings);
+            RestResponse response = (RestResponse) ApiClient.CallApi(path, Method.Get, queryParams, postBody, headerParams, formParams, fileParams, pathParams, authSettings);
     
             if (((int)response.StatusCode) >= 400)
                 throw new ApiException ((int)response.StatusCode, "Error calling BanksGet: " + response.Content, response.Content);
@@ -173,7 +173,7 @@ namespace Khipu.Api
             String[] authSettings = new String[] { "khipu" };
     
             // make the HTTP request
-            IRestResponse response = (IRestResponse) await ApiClient.CallApiAsync(path, Method.GET, queryParams, postBody, headerParams, formParams, fileParams, pathParams, authSettings);
+            RestResponse response = (RestResponse) await ApiClient.CallApiAsync(path, Method.Get, queryParams, postBody, headerParams, formParams, fileParams, pathParams, authSettings);
             if (((int)response.StatusCode) >= 400)
                 throw new ApiException ((int)response.StatusCode, "Error calling BanksGet: " + response.Content, response.Content);
 

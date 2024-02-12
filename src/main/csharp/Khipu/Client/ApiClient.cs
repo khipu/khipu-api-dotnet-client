@@ -61,7 +61,7 @@ namespace Khipu.Client
         /// <summary>
         /// Gets the response headers of the previous request
         /// </summary>
-        public Dictionary<String, String> ResponseHeaders { get; private set; } 
+        public Lookup<String, String> ResponseHeaders { get; private set; } 
     
         // Creates and sets up a RestRequest prior to a call.
         private RestRequest PrepareRequest(
@@ -99,7 +99,7 @@ namespace Khipu.Client
 
             // add file parameter, if any
             foreach(var param in fileParams)
-                request.AddFile(param.Value.Name, param.Value.Writer, param.Value.FileName, param.Value.ContentType);
+                request.AddFile(param.Value.Name, param.Value.GetFile, param.Value.FileName, param.Value.ContentType);
 
             if (postBody != null) // http body (model) parameter
                 request.AddParameter("application/json", postBody, ParameterType.RequestBody);
@@ -129,7 +129,7 @@ namespace Khipu.Client
                 path, method, queryParams, postBody, headerParams, formParams, fileParams, pathParams, authSettings);
             var response = RestClient.Execute(request);
             StatusCode = (int) response.StatusCode;
-            ResponseHeaders = response.Headers.ToDictionary(x => x.Name, x => x.Value.ToString());
+            ResponseHeaders = (Lookup<string, string>)response.Headers.ToLookup(x => x.Name, x => x.Value.ToString());
             return (Object) response;
         }
 
@@ -153,9 +153,9 @@ namespace Khipu.Client
         {
             var request = PrepareRequest(
                 path, method, queryParams, postBody, headerParams, formParams, fileParams, pathParams, authSettings);
-            var response = await RestClient.ExecuteTaskAsync(request);
+            var response = await RestClient.ExecuteAsync(request);
             StatusCode = (int)response.StatusCode;
-            ResponseHeaders = response.Headers.ToDictionary(x => x.Name, x => x.Value.ToString());
+            ResponseHeaders = (Lookup<string, string>)response.Headers.ToLookup(x => x.Name, x => x.Value.ToString());
             return (Object)response;
         }
     
@@ -177,7 +177,7 @@ namespace Khipu.Client
         /// <returns>Escaped string.</returns>
         public string EscapeString(string str)
         {
-            return RestSharp.Extensions.StringExtensions.UrlEncode(str);
+            return Uri.EscapeDataString(str);
         }
     
         /// <summary>
@@ -188,12 +188,27 @@ namespace Khipu.Client
         /// <returns>FileParameter.</returns>
         public FileParameter ParameterToFile(string name, Stream stream)
         {
-            if (stream is FileStream)
-                return FileParameter.Create(name, stream.ReadAsBytes(), Path.GetFileName(((FileStream)stream).Name));
+            byte[] fileData = ReadStreamAsBytes(stream);
+
+            if (stream is FileStream fileStream)
+            {
+                return FileParameter.Create(name, fileData, Path.GetFileName(fileStream.Name));
+            }
             else
-                return FileParameter.Create(name, stream.ReadAsBytes(), "no_file_name_provided");
+            {
+                return FileParameter.Create(name, fileData, "no_file_name_provided");
+            }
         }
-    
+
+        public byte[] ReadStreamAsBytes(Stream stream)
+        {
+            using (MemoryStream memoryStream = new MemoryStream())
+            {
+                stream.CopyTo(memoryStream);
+                return memoryStream.ToArray();
+            }
+        }
+
         /// <summary>
         /// If parameter is DateTime, output in ISO8601 format.
         /// If parameter is a list, join the list with ",".
@@ -224,7 +239,7 @@ namespace Khipu.Client
         /// <param name="type">Object type.</param>
         /// <param name="headers"></param>
         /// <returns>Object representation of the JSON string.</returns>
-        public object Deserialize(string content, Type type, IList<Parameter> headers=null)
+        public object Deserialize(string content, Type type, IReadOnlyCollection<HeaderParameter> headers=null)
         {
             if (type == typeof(Object)) // return an object
             {
@@ -330,7 +345,7 @@ namespace Khipu.Client
             formParams.ToList().ForEach(x => ps[x.Key] = x.Value);
 
             List<String> keys = new List<String>(ps.Keys.OrderBy(q => q));
-            String toSign = method + "&" + Uri.EscapeDataString(BasePath + path);
+            String toSign = method.ToString().ToUpper() + "&" + Uri.EscapeDataString(BasePath + path);
 
             foreach(var key in keys)
                 toSign += "&" + Uri.EscapeDataString(key) + "=" + Uri.EscapeDataString(ps[key]);

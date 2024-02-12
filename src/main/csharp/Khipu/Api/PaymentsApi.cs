@@ -280,7 +280,7 @@ namespace Khipu.Api
             String[] authSettings = new String[] { "khipu" };
     
             // make the HTTP request
-            IRestResponse response = (IRestResponse) ApiClient.CallApi(path, Method.GET, queryParams, postBody, headerParams, formParams, fileParams, pathParams, authSettings);
+            RestResponse response = (RestResponse) ApiClient.CallApi(path, Method.Get, queryParams, postBody, headerParams, formParams, fileParams, pathParams, authSettings);
     
             if (((int)response.StatusCode) >= 400)
                 throw new ApiException ((int)response.StatusCode, "Error calling PaymentsGet: " + response.Content, response.Content);
@@ -332,7 +332,7 @@ namespace Khipu.Api
             String[] authSettings = new String[] { "khipu" };
     
             // make the HTTP request
-            IRestResponse response = (IRestResponse) await ApiClient.CallApiAsync(path, Method.GET, queryParams, postBody, headerParams, formParams, fileParams, pathParams, authSettings);
+            RestResponse response = (RestResponse) await ApiClient.CallApiAsync(path, Method.Get, queryParams, postBody, headerParams, formParams, fileParams, pathParams, authSettings);
             if (((int)response.StatusCode) >= 400)
                 throw new ApiException ((int)response.StatusCode, "Error calling PaymentsGet: " + response.Content, response.Content);
 
@@ -434,7 +434,7 @@ namespace Khipu.Api
             String[] authSettings = new String[] { "khipu" };
     
             // make the HTTP request
-            IRestResponse response = (IRestResponse) ApiClient.CallApi(path, Method.POST, queryParams, postBody, headerParams, formParams, fileParams, pathParams, authSettings);
+            RestResponse response = (RestResponse) ApiClient.CallApi(path, Method.Post, queryParams, postBody, headerParams, formParams, fileParams, pathParams, authSettings);
     
             if (((int)response.StatusCode) >= 400)
                 throw new ApiException ((int)response.StatusCode, "Error calling PaymentsPost: " + response.Content, response.Content);
@@ -536,7 +536,7 @@ namespace Khipu.Api
             String[] authSettings = new String[] { "khipu" };
     
             // make the HTTP request
-            IRestResponse response = (IRestResponse) await ApiClient.CallApiAsync(path, Method.POST, queryParams, postBody, headerParams, formParams, fileParams, pathParams, authSettings);
+            RestResponse response = (RestResponse) await ApiClient.CallApiAsync(path, Method.Post, queryParams, postBody, headerParams, formParams, fileParams, pathParams, authSettings);
             if (((int)response.StatusCode) >= 400)
                 throw new ApiException ((int)response.StatusCode, "Error calling PaymentsPost: " + response.Content, response.Content);
 
@@ -586,7 +586,7 @@ namespace Khipu.Api
             String[] authSettings = new String[] { "khipu" };
     
             // make the HTTP request
-            IRestResponse response = (IRestResponse) ApiClient.CallApi(path, Method.GET, queryParams, postBody, headerParams, formParams, fileParams, pathParams, authSettings);
+            RestResponse response = (RestResponse) ApiClient.CallApi(path, Method.Get, queryParams, postBody, headerParams, formParams, fileParams, pathParams, authSettings);
     
             if (((int)response.StatusCode) >= 400)
                 throw new ApiException ((int)response.StatusCode, "Error calling PaymentsIdGet: " + response.Content, response.Content);
@@ -638,7 +638,7 @@ namespace Khipu.Api
             String[] authSettings = new String[] { "khipu" };
     
             // make the HTTP request
-            IRestResponse response = (IRestResponse) await ApiClient.CallApiAsync(path, Method.GET, queryParams, postBody, headerParams, formParams, fileParams, pathParams, authSettings);
+            RestResponse response = (RestResponse) await ApiClient.CallApiAsync(path, Method.Get, queryParams, postBody, headerParams, formParams, fileParams, pathParams, authSettings);
             if (((int)response.StatusCode) >= 400)
                 throw new ApiException ((int)response.StatusCode, "Error calling PaymentsIdGet: " + response.Content, response.Content);
 
@@ -688,7 +688,7 @@ namespace Khipu.Api
             String[] authSettings = new String[] { "khipu" };
     
             // make the HTTP request
-            IRestResponse response = (IRestResponse) ApiClient.CallApi(path, Method.DELETE, queryParams, postBody, headerParams, formParams, fileParams, pathParams, authSettings);
+            RestResponse response = (RestResponse) ApiClient.CallApi(path, Method.Delete, queryParams, postBody, headerParams, formParams, fileParams, pathParams, authSettings);
     
             if (((int)response.StatusCode) >= 400)
                 throw new ApiException ((int)response.StatusCode, "Error calling PaymentsIdDelete: " + response.Content, response.Content);
@@ -740,7 +740,7 @@ namespace Khipu.Api
             String[] authSettings = new String[] { "khipu" };
     
             // make the HTTP request
-            IRestResponse response = (IRestResponse) await ApiClient.CallApiAsync(path, Method.DELETE, queryParams, postBody, headerParams, formParams, fileParams, pathParams, authSettings);
+            RestResponse response = (RestResponse) await ApiClient.CallApiAsync(path, Method.Delete, queryParams, postBody, headerParams, formParams, fileParams, pathParams, authSettings);
             if (((int)response.StatusCode) >= 400)
                 throw new ApiException ((int)response.StatusCode, "Error calling PaymentsIdDelete: " + response.Content, response.Content);
 
@@ -790,7 +790,7 @@ namespace Khipu.Api
             String[] authSettings = new String[] { "khipu" };
     
             // make the HTTP request
-            IRestResponse response = (IRestResponse) ApiClient.CallApi(path, Method.POST, queryParams, postBody, headerParams, formParams, fileParams, pathParams, authSettings);
+            RestResponse response = (RestResponse) ApiClient.CallApi(path, Method.Post, queryParams, postBody, headerParams, formParams, fileParams, pathParams, authSettings);
     
             if (((int)response.StatusCode) >= 400)
                 throw new ApiException ((int)response.StatusCode, "Error calling PaymentsIdConfirmPost: " + response.Content, response.Content);
@@ -842,7 +842,7 @@ namespace Khipu.Api
             String[] authSettings = new String[] { "khipu" };
     
             // make the HTTP request
-            IRestResponse response = (IRestResponse) await ApiClient.CallApiAsync(path, Method.POST, queryParams, postBody, headerParams, formParams, fileParams, pathParams, authSettings);
+            RestResponse response = (RestResponse) await ApiClient.CallApiAsync(path, Method.Post, queryParams, postBody, headerParams, formParams, fileParams, pathParams, authSettings);
             if (((int)response.StatusCode) >= 400)
                 throw new ApiException ((int)response.StatusCode, "Error calling PaymentsIdConfirmPost: " + response.Content, response.Content);
 
@@ -894,7 +894,7 @@ namespace Khipu.Api
             String[] authSettings = new String[] { "khipu" };
     
             // make the HTTP request
-            IRestResponse response = (IRestResponse) ApiClient.CallApi(path, Method.POST, queryParams, postBody, headerParams, formParams, fileParams, pathParams, authSettings);
+            RestResponse response = (RestResponse) ApiClient.CallApi(path, Method.Post, queryParams, postBody, headerParams, formParams, fileParams, pathParams, authSettings);
     
             if (((int)response.StatusCode) >= 400)
                 throw new ApiException ((int)response.StatusCode, "Error calling PaymentsIdRefundsPost: " + response.Content, response.Content);
@@ -948,7 +948,7 @@ namespace Khipu.Api
             String[] authSettings = new String[] { "khipu" };
     
             // make the HTTP request
-            IRestResponse response = (IRestResponse) await ApiClient.CallApiAsync(path, Method.POST, queryParams, postBody, headerParams, formParams, fileParams, pathParams, authSettings);
+            RestResponse response = (RestResponse) await ApiClient.CallApiAsync(path, Method.Post, queryParams, postBody, headerParams, formParams, fileParams, pathParams, authSettings);
             if (((int)response.StatusCode) >= 400)
                 throw new ApiException ((int)response.StatusCode, "Error calling PaymentsIdRefundsPost: " + response.Content, response.Content);
 
